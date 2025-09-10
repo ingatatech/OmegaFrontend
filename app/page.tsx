@@ -132,7 +132,7 @@ const yearsExperience = currentYear - 2014 + 1;
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-lg sm:text-2xl mb-8 font-medium text-blue-100"
+              className=" mb-8 font-medium text-blue-100"
             >
               Your trusted partner for Construction, Building Maintenance, Interior Design, Projection Workshop,
               Property Management & Cleaning services

@@ -86,7 +86,7 @@ export default function Footer() {
       <div className="w-full bg-primary/90 border-t border-white/10 py-4 text-center text-gray-200 text-xs flex flex-col md:flex-row items-center justify-between gap-2 px-4">
         <span>&copy; {new Date().getFullYear()} OMEGA SIR Ltd. All rights reserved.</span>
         <span>
-          Designed in <span className="font-semibold text-white">The Ingata Technologies Ltd</span>
+          Developed in <span className="font-semibold text-white">The Ingata Technologies Ltd</span>
         </span>
         <span className="flex gap-4">
           <Link href="#" className="hover:text-white transition">Privacy Policy</Link>
