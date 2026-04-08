@@ -353,7 +353,7 @@ const yearsExperience = currentYear - 2014 + 1;
                             {project.category.name}
                           </span>
                           <Link
-                            href={`/projects/${project.id}`}
+                            href={`/projects/project?id=${project.id}`}
                             className="text-primary hover:text-primary/80 text-sm font-semibold"
                           >
                             View Details →
@@ -395,7 +395,7 @@ const yearsExperience = currentYear - 2014 + 1;
             {project.category.name}
           </span>
           <Link
-            href={`/projects/${project.id}`}
+            href={`/projects/project?id=${project.id}`}
             className="text-primary hover:text-primary/80 text-sm font-semibold"
           >
             View Details →

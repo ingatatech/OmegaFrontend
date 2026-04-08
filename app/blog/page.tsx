@@ -178,7 +178,7 @@ export default function BlogPage() {
                     </h2>
                     <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
                     <Link
-                      href={`/blog/${post.id}`}
+                      href={`/blog/single?id=${post.id}`}
                       className="inline-flex items-center gap-2 text-primary font-semibold hover:text-blue-700 transition-colors duration-300 group-hover:gap-3"
                     >
                       Read More

@@ -228,7 +228,7 @@ const JobCard = ({ job, index }: { job: Job; index: number;  }) => {
             </span>
           </div>
 
-         <Link href={`/careers/apply/${job.id}`}>
+         <Link href={`/careers/apply/job?id=${job.id}`}>
             <Button className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
               <Send className="w-4 h-4 mr-2" />
               Apply Now
