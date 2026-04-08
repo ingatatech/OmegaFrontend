@@ -329,18 +329,10 @@ export default function EnhancedAboutPage() {
       <ScrollProgress />
       <VideoBackground />
 
-      <div className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 text-gray-800 min-h-screen">
+      <div className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 text-gray-800">
         {/* Enhanced Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden lg:-mt-10">
-          {/* Animated Background Elements */}
-          <motion.div
-            style={{ y: y1 }}
-            className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
-          />
-          <motion.div
-            style={{ y: y2 }}
-            className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          />
+        <section className="relative py-12">
+      
 
           {/* Content */}
           <div className="relative z-10 container mx-auto px-4 text-center">
@@ -348,21 +340,19 @@ export default function EnhancedAboutPage() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="max-w-6xl mx-auto"
+              className="max-w-6xl mx-auto text-left space-y-8"
             >
-              {/* Title */}
-              <motion.h1
-                className="text-4xl font-bold mb-6 text-white drop-shadow-2xl text-left"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                About{" "}
-                <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                  OMEGA SIR
-                </span>{" "}
-                Ltd
-              </motion.h1>
+           	
+						{/* Badge */}
+						<motion.div 
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6, delay: 0.1 }}
+							className="inline-flex items-center gap-2 bg-primary text-white border border-white px-4 py-2 rounded-full text-sm font-semibold"
+						>
+							<span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+							About Omega Sir Ltd
+						</motion.div>
 
               {/* Extended Description */}
               <motion.p
@@ -391,7 +381,7 @@ export default function EnhancedAboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
+                className="flex flex-col sm:flex-row gap-4 justify-start "
               >
                 <Button
                   size="lg"
@@ -410,22 +400,7 @@ export default function EnhancedAboutPage() {
               </motion.div>
             </motion.div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.5 }}
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            >
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                className="text-white/70 text-center"
-              >
-                <div className="text-sm mb-2">Scroll to explore</div>
-                <ChevronDown className="w-6 h-6 mx-auto" />
-              </motion.div>
-            </motion.div>
+      
           </div>
         </section>
 
@@ -436,7 +411,7 @@ export default function EnhancedAboutPage() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center mb-16"
+              className="text-center mb-8"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Our Foundation</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -445,7 +420,7 @@ export default function EnhancedAboutPage() {
             </motion.div>
 
             {/* Interactive Tabs */}
-            <div className="max-w-4xl mx-auto mb-16">
+            <div className="max-w-4xl mx-auto mb-8">
               <div className="flex flex-wrap justify-center mb-8">
                 {tabs.map((tab) => (
                   <motion.button

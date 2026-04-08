@@ -10,6 +10,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress"
 import { fetchJobs } from "@/lib/api"
 import { Job } from "@/lib/types"
 import Link from "next/link"
+import VideoBackground from "@/components/video-background"
 
 const steps = [
   {
@@ -299,6 +300,7 @@ export default function EnhancedCareersPage() {
 
   return (
     <>
+    <VideoBackground/>
       <ScrollProgress />
 
       <div className="min-h-screen bg-gradient-to-br  text-gray-800 relative overflow-hidden">
@@ -357,7 +359,6 @@ export default function EnhancedCareersPage() {
                     onClick={() => document.getElementById("jobs")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     View Open Positions
-                    <ChevronDown className="ml-2 w-5 h-5" />
                   </Button>
                 
                 </motion.div>

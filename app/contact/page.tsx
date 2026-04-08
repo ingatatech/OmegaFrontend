@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, Clock, Send} from "lucide-react"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import { sendContactMessage } from "@/lib/api" 
 import toast from "react-hot-toast" // Import toast
+import VideoBackground from "@/components/video-background"
 
 export default function InteractiveContactPage() {
   const [formData, setFormData] = useState({
@@ -90,6 +91,7 @@ export default function InteractiveContactPage() {
   return (
     <>
       <ScrollProgress />
+        <VideoBackground/>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -123,7 +125,7 @@ export default function InteractiveContactPage() {
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-10 container mx-auto px-4 pb-20 pt-10 text-center">
+          <div className="relative z-10 container max-w-6xl  mx-auto py-10">
             <h1 className="text-4xl font-bold font-title mb-6 text-left">Get in Touch With OMEGA SIR Ltd</h1>
             <p className="max-w-6xl mx-auto text-blue-100 font-body font-medium text-base md:text-xl mb-6 text-left">
               Have questions about our services? We're here to help you build, maintain, and grow through
@@ -135,7 +137,7 @@ export default function InteractiveContactPage() {
               <span className="text-white font-semibold"> Interior Design</span> expertise.
             </p>
 
-            <div className="mt-2 inline-block">
+            <div className="mt-2 inline-block max-w-6xl mx-auto text-center">
               <button
                 onClick={() => {
                   const el = document.getElementById("contact-form")
@@ -161,7 +163,7 @@ export default function InteractiveContactPage() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 py-5">
+        <div className="relative z-20 max-w-6xl mx-auto px-4 py-5">
      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4">
       <div className="max-w-6xl mx-auto py-8">
         <div className="text-center mb-8">

@@ -25,7 +25,7 @@ export default function Header() {
       
      	{/* Logo */}
 						<div className="flex items-center space-x-2">
-							<Image src="/logo/1.png" alt="Omega sir ltd" width={200} height={60}  className="h-16 sm:h-20 lg:h-20 w-auto" />
+							<Image src="/logo/1.jpeg" alt="Omega sir ltd" width={200} height={60}  className="h-16 sm:h-20 lg:h-20 w-auto" />
 						</div>
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-4 sm:gap-8 text-primary font-medium text-base">

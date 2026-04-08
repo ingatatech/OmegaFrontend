@@ -47,6 +47,8 @@ function getInitials(name: string) {
 }
 
 
+import { Building2, Wrench, Sparkles, Factory, ClipboardList, SprayCan } from "lucide-react"
+
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([])
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
@@ -113,12 +115,29 @@ const yearsExperience = currentYear - 2014 + 1;
       <VideoBackground />
       <div className="min-h-screen text-white flex flex-col">
         {/* Hero Section */}
-        <section className="relative flex flex-col items-center justify-center text-center px-4 py-28 min-h-[80vh] bg-gradient-to-br from-primary/90 via-primary/50 to-white/95 text-white overflow-hidden z-10 lg:-mt-10">
+        <section className="relative flex flex-col items-center justify-center text-center px-4 py-12 min-h-[80vh] bg-gradient-to-br from-primary/90 via-primary/50 to-white/95 text-white overflow-hidden z-10 lg:-mt-10">
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/10 z-0" />
 
           {/* Content */}
-          <div className="max-w-6xl mx-auto z-10">
+          <div className="text-left max-w-6xl mx-auto space-y-10">
+            	{/* Badge */}
+						<motion.div 
+							className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-md px-6 py-3 rounded-full border border-primary/50 shadow-xl"
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6 }}
+						>
+							<motion.div 
+								className="w-2.5 h-2.5 bg-primary rounded-full"
+								animate={{ 
+									scale: [1, 1.4, 1],
+									boxShadow: ["0 0 0 0 rgba(1, 139, 202, 0.4)", "0 0 0 8px rgba(1, 139, 202, 0)", "0 0 0 0 rgba(1, 139, 202, 0)"]
+								}}
+								transition={{ duration: 2, repeat: Infinity }}
+							/>
+							<span className="text-sm font-semibold text-white"> Rwanda&apos;s Premier Construction & Facilities Company</span>
+						</motion.div>
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,10 +187,8 @@ const yearsExperience = currentYear - 2014 + 1;
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Construction Projects */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow">
-                  <span role="img" aria-label="Construction" className="text-3xl">
-                    🏗️
-                  </span>
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                  <Building2 className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Construction Projects</h3>
                 <p className="text-center mb-4 text-gray-700">
@@ -186,10 +203,8 @@ const yearsExperience = currentYear - 2014 + 1;
               </div>
               {/* Building Maintenance */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow">
-                  <span role="img" aria-label="Maintenance" className="text-3xl">
-                    🔧
-                  </span>
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                  <Wrench className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Building Maintenance</h3>
                 <p className="text-center mb-4 text-gray-700">
@@ -204,10 +219,8 @@ const yearsExperience = currentYear - 2014 + 1;
               </div>
               {/* Cleaning Services */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow">
-                  <span role="img" aria-label="Cleaning" className="text-3xl">
-                    🧹
-                  </span>
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                  <Sparkles className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Cleaning Services</h3>
                 <p className="text-center mb-4 text-gray-700">
@@ -222,10 +235,8 @@ const yearsExperience = currentYear - 2014 + 1;
               </div>
               {/* Interior Design */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow">
-                  <span role="img" aria-label="Interior Design" className="text-3xl">
-                    🎨
-                  </span>
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                 <SprayCan className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Interior Design</h3>
                 <p className="text-center mb-4 text-gray-700">Creative and functional interior design solutions</p>
@@ -238,10 +249,8 @@ const yearsExperience = currentYear - 2014 + 1;
               </div>
               {/* Projection Workshop */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow">
-                  <span role="img" aria-label="Workshop" className="text-3xl">
-                    🏭
-                  </span>
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                  <Factory className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Projection Workshop</h3>
                 <p className="text-center mb-4 text-gray-700">Custom furniture, fabrication, and bespoke installations</p>
@@ -254,10 +263,8 @@ const yearsExperience = currentYear - 2014 + 1;
               </div>
               {/* Property Management */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow">
-                  <span role="img" aria-label="Property Management" className="text-3xl">
-                    📋
-                  </span>
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                  <ClipboardList className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Property Management</h3>
                 <p className="text-center mb-4 text-gray-700">

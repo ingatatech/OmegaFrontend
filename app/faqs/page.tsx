@@ -24,6 +24,7 @@ import { Badge } from "@/components/ui/badge"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import { fetchFAQs } from "@/lib/api"
 import { FAQ, FAQCategory } from "@/lib/types"
+import VideoBackground from "@/components/video-background"
 
 // Icon mapping for categories
 const categoryIcons: { [key: string]: any } = {
@@ -223,7 +224,7 @@ export default function EnhancedFAQPage() {
   return (
     <>
       <ScrollProgress />
-
+  <VideoBackground/>
       <div className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 min-h-screen text-gray-800 relative overflow-hidden">
         {/* Animated Background Elements */}
         <motion.div
@@ -284,7 +285,7 @@ export default function EnhancedFAQPage() {
                     onClick={() => document.getElementById("faqs")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     Browse FAQs
-                    <ChevronDown className="ml-2 w-5 h-5" />
+                   
                   </Button>
                   <Button
                     variant="outline"
@@ -292,7 +293,7 @@ export default function EnhancedFAQPage() {
                     className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 rounded-full backdrop-blur-sm bg-transparent"
                   >
                    <a href="/contact"> Contact Support</a>
-                    <MessageCircle className="ml-2 w-5 h-5" />
+                  
                   </Button>
                 </motion.div>
               </motion.div>
