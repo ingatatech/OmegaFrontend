@@ -91,8 +91,9 @@ export default function InteractiveContactPage() {
   return (
     <>
       <ScrollProgress />
-        <VideoBackground/>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
+      <VideoBackground />
+       
+      <div className="min-h-screen relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full opacity-30 animate-pulse"></div>
@@ -107,7 +108,7 @@ export default function InteractiveContactPage() {
         </div>
 
         {/* Hero Section with Animated Particles + Waves */}
-        <div className="relative bg-blue-900 text-white overflow-hidden">
+        <div className="relative inset-0 bg-gradient-to-b from-primary/90 text-white overflow-hidden">
           {/* Animated Background Particles */}
           <div className="absolute inset-0 pointer-events-none z-0">
             {[...Array(25)].map((_, i) => (
@@ -125,7 +126,7 @@ export default function InteractiveContactPage() {
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-10 container max-w-6xl  mx-auto py-10">
+          <div className="relative z-10 container max-w-6xl  mx-auto px-5 py-10">
             <h1 className="text-4xl font-bold font-title mb-6 text-left">Get in Touch With OMEGA SIR Ltd</h1>
             <p className="max-w-6xl mx-auto text-blue-100 font-body font-medium text-base md:text-xl mb-6 text-left">
               Have questions about our services? We're here to help you build, maintain, and grow through
@@ -163,8 +164,8 @@ export default function InteractiveContactPage() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 max-w-6xl mx-auto px-4 py-5">
-     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4">
+      
+     <section className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4">
       <div className="max-w-6xl mx-auto py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Get In Touch</h1>
@@ -409,9 +410,9 @@ export default function InteractiveContactPage() {
   </form>
 </div>
       </div>
-    </div>
+    </section>
           {/* Map Section */}
-          <section className="py-10 bg-white backdrop-blur-sm relative overflow-hidden rounded-3xl">
+          <section className="py-10 bg-white backdrop-blur-sm relative overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="text-center space-y-6 mb-12">
                 <h2 className="text-4xl lg:text-5xl font-bold text-black">
@@ -459,7 +460,7 @@ export default function InteractiveContactPage() {
               </div>
             </div>
           </section>
-        </div>
+        
       </div>
     </>
   )
