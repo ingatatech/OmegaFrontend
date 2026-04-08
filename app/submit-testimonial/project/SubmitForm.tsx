@@ -115,7 +115,7 @@ export default function SubmitForm({ projectId }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4 relative pb-16">
       <Card className="w-full max-w-2xl shadow-xl rounded-2xl">
         <CardHeader className="text-center bg-primary/5 py-6 rounded-t-2xl">
           <CardTitle className="text-3xl font-bold text-gray-800">Submit Testimonial</CardTitle>
@@ -169,6 +169,12 @@ export default function SubmitForm({ projectId }: Props) {
           )}
         </CardContent>
       </Card>
+      {/* Bottom wave */}
+      <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+        <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+          <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+        </svg>
+      </div>
     </div>
   )
 }

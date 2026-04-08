@@ -22,7 +22,7 @@ import {
   Leaf,
 } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion,  AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import {
   Carousel,
@@ -251,9 +251,7 @@ export default function EnhancedAboutPage() {
   const [activeTab, setActiveTab] = useState("mission")
   const [team, setTeam] = useState<TeamMember[]>([])
   const [isLoadingTeam, setIsLoadingTeam] = useState(true)
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 300], [0, 50])
-  const y2 = useTransform(scrollY, [0, 300], [0, -50])
+
 
   // Fetch team members from API
   useEffect(() => {
@@ -329,9 +327,9 @@ export default function EnhancedAboutPage() {
       <ScrollProgress />
       <VideoBackground />
 
-      <div className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 text-gray-800">
+      <div className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 text-gray-800 overflow-hidden ">
         {/* Enhanced Hero Section */}
-        <section className="relative py-12">
+        <section className="relative overflow-hidden  py-12">
       
 
           {/* Content */}

@@ -305,7 +305,7 @@ export default function JobApplicationClient({ jobId }: { jobId: string }) {
   return (
     <>
       <ScrollProgress />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-12">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-12 relative pb-16">
         <div className="max-w-4xl mx-auto px-6">
           {/* Header */}
           <div className="mb-8">
@@ -665,6 +665,12 @@ export default function JobApplicationClient({ jobId }: { jobId: string }) {
               </div>
             </div>
           </div>
+        </div>
+        {/* Bottom wave */}
+        <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+          <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+            <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+          </svg>
         </div>
       </div>
     </>

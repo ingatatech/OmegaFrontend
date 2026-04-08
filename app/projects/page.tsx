@@ -10,15 +10,14 @@ import {
   Loader2,
 } from "lucide-react"
 import Link from "next/link"
-import { fetchProjects, fetchTestimonials } from "@/lib/api"
-import type { Project, Testimonial } from "@/lib/types"
+import { fetchProjects } from "@/lib/api"
+import type { Project } from "@/lib/types"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import { motion } from "framer-motion"
 import VideoBackground from "@/components/video-background"
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
   const [loading, setLoading] = useState(true)
 
   const [selectedCategory, setSelectedCategory] = useState("All Projects")
@@ -28,8 +27,7 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     loadProjects()
-    loadTestimonials()
-    
+
     // Auto-scroll to projects section after a short delay
     const timer = setTimeout(() => {
       scrollToProjects()
@@ -53,19 +51,6 @@ export default function ProjectsPage() {
       setLoading(true)
       const data = await fetchProjects()
       setProjects(data)
-    } catch (err) {
-  
-      console.error("Error loading projects:", err)
-    } finally {
-      setLoading(false)
-    }
-  }
-  const loadTestimonials = async () => {
-    try {
-      setLoading(true)
-      const data:any = await fetchTestimonials()
-      console.log(data.data)
-      setTestimonials(data.data)
     } catch (err) {
   
       console.error("Error loading projects:", err)
@@ -101,7 +86,7 @@ export default function ProjectsPage() {
     <>
       <ScrollProgress />
       <VideoBackground/>
-      <div className="min-h-screen ">
+      <div className="min-h-screen">
         {/* Hero Section */}
  <section className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-primary/70 to-primary/90 text-white">
           {/* Overlay */}
@@ -156,7 +141,7 @@ export default function ProjectsPage() {
     </section>
 
         {/* All Projects Section */}
-        <section id="projects" className="py-20 bg-white">
+        <section id="projects" className="relative py-10 bg-white pb-16">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-12">
               <div>
@@ -290,8 +275,12 @@ export default function ProjectsPage() {
               </div>
             )}
           </div>
-          
-        
+          {/* Bottom wave */}
+          <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+            <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+              <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+            </svg>
+          </div>
         </section>
       </div>
     </>

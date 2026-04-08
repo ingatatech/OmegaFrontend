@@ -122,7 +122,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
   return (
     <>
       <ScrollProgress />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-10">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-10 relative pb-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
@@ -387,6 +387,12 @@ export default function ProjectDetailClient({ id }: { id: string }) {
               </div>
             </div>
           </div>
+        </div>
+        {/* Bottom wave */}
+        <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+          <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+            <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+          </svg>
         </div>
       </div>
     </>
