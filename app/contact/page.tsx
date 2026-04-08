@@ -124,8 +124,8 @@ export default function InteractiveContactPage() {
 
           {/* Hero Content */}
           <div className="relative z-10 container mx-auto px-4 pb-20 pt-10 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold font-title mb-6">Get in Touch With OMEGA SIR Ltd</h1>
-            <p className="max-w-3xl mx-auto text-blue-100 font-body font-medium text-base md:text-xl mb-6">
+            <h1 className="text-4xl font-bold font-title mb-6 text-left">Get in Touch With OMEGA SIR Ltd</h1>
+            <p className="max-w-6xl mx-auto text-blue-100 font-body font-medium text-base md:text-xl mb-6 text-left">
               Have questions about our services? We're here to help you build, maintain, and grow through
               <span className="text-white font-semibold"> construction</span>,
               <span className="text-white font-semibold"> cleaning</span>,
@@ -158,19 +158,6 @@ export default function InteractiveContactPage() {
             </div>
           </div>
 
-          {/* Wave Background */}
-          <svg
-            className="absolute bottom-0 left-0 w-full h-32 md:h-48 text-white"
-            preserveAspectRatio="none"
-            viewBox="0 0 1440 320"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="currentColor"
-              fillOpacity="1"
-              d="M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,186.7C672,160,768,128,864,128C960,128,1056,160,1152,170.7C1248,181,1344,171,1392,165.3L1440,160L1440,320L0,320Z"
-            />
-          </svg>
         </div>
 
         {/* Main Content */}
@@ -386,7 +373,7 @@ export default function InteractiveContactPage() {
           onFocus={() => setFocusedField("message")}
           onBlur={() => setFocusedField("")}
           rows={4}
-          className={`w-full h-full min-h-[100px] border-2 rounded-lg px-3 py-2 text-sm transition-all duration-200 ${
+          className={`w-full h-full min-h-[80px] border-2 rounded-lg px-3 py-2 text-sm transition-all duration-200 ${
             focusedField === "message" ? "border-blue-500 shadow-md" : "border-gray-300"
           } focus:outline-none focus:border-blue-500 focus:shadow-md resize-none`}
           required

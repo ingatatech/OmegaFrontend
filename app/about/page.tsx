@@ -10,6 +10,16 @@ import {
   CheckCircle,
   Users,
   Globe,
+  Building2,
+  HardHat,
+  ShieldCheck,
+  CircleDollarSign,
+  Clock,
+  Lock,
+  Handshake,
+  Star,
+  Lightbulb,
+  Leaf,
 } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
@@ -35,42 +45,42 @@ interface TeamMember {
 
 const features = [
   {
-    icon: "🏢",
+    icon: <Building2 className="w-12 h-12 text-primary mx-auto" />,
     title: "One-Stop Solution",
     desc: "From construction to cleaning and landscaping - we handle it all under one roof with integrated project management.",
     highlight: "500+ Projects Completed",
     benefits: ["Integrated Services", "Single Point of Contact", "Streamlined Communication", "Cost Efficiency"],
   },
   {
-    icon: "👷",
+    icon: <HardHat className="w-12 h-12 text-primary mx-auto" />,
     title: "Experienced Team",
     desc: "Our certified professionals bring decades of combined experience with continuous training and development.",
     highlight: "50+ Expert Staff",
     benefits: ["Certified Professionals", "Ongoing Training", "Industry Expertise", "Quality Assurance"],
   },
   {
-    icon: "✅",
+    icon: <ShieldCheck className="w-12 h-12 text-primary mx-auto" />,
     title: "Quality Guarantee",
     desc: "Comprehensive warranty programs with 24-month service guarantees and rigorous quality control processes.",
     highlight: "99.8% Client Satisfaction",
     benefits: ["24-Month Warranty", "Quality Control", "Regular Inspections", "Customer Support"],
   },
   {
-    icon: "💰",
+    icon: <CircleDollarSign className="w-12 h-12 text-primary mx-auto" />,
     title: "Transparent Pricing",
     desc: "No hidden fees - detailed quotes with competitive, fair pricing and flexible payment options.",
     highlight: "20% Cost Savings Average",
     benefits: ["No Hidden Fees", "Detailed Quotes", "Competitive Rates", "Flexible Payment"],
   },
   {
-    icon: "⏰",
+    icon: <Clock className="w-12 h-12 text-primary mx-auto" />,
     title: "24/7 Support",
     desc: "Round-the-clock emergency response and customer support with dedicated account managers.",
     highlight: "2-Hour Response Time",
     benefits: ["Emergency Response", "Dedicated Support", "24/7 Availability", "Quick Resolution"],
   },
   {
-    icon: "🔒",
+    icon: <Lock className="w-12 h-12 text-primary mx-auto" />,
     title: "Licensed & Insured",
     desc: "Fully certified with comprehensive insurance coverage for your protection and peace of mind.",
     highlight: "$2M Insurance Coverage",
@@ -273,18 +283,18 @@ export default function EnhancedAboutPage() {
   const coreValues = [
     {
       title: "Integrity",
-      icon: "🤝",
+      icon: <Handshake className="w-12 h-12 text-primary mx-auto" />,
       description: "Honest and transparent in all our dealings with unwavering ethical standards",
     },
     {
       title: "Quality",
-      icon: "⭐",
+      icon: <Star className="w-12 h-12 text-primary mx-auto" />,
       description: "Excellence in every project we undertake with rigorous quality control",
     },
-    { title: "Reliability", icon: "🎯", description: "Consistent delivery on time and budget with dependable service" },
-    { title: "Innovation", icon: "💡", description: "Embracing new technologies and methods for better solutions" },
-    { title: "Sustainability", icon: "🌱", description: "Environmental responsibility in all projects and operations" },
-    { title: "Community", icon: "❤️", description: "Contributing to local development and growth initiatives" },
+    { title: "Reliability", icon: <Target className="w-12 h-12 text-primary mx-auto" />, description: "Consistent delivery on time and budget with dependable service" },
+    { title: "Innovation", icon: <Lightbulb className="w-12 h-12 text-primary mx-auto" />, description: "Embracing new technologies and methods for better solutions" },
+    { title: "Sustainability", icon: <Leaf className="w-12 h-12 text-primary mx-auto" />, description: "Environmental responsibility in all projects and operations" },
+    { title: "Community", icon: <Heart className="w-12 h-12 text-primary mx-auto" />, description: "Contributing to local development and growth initiatives" },
   ]
 
   const tabs = [
@@ -319,7 +329,7 @@ export default function EnhancedAboutPage() {
       <ScrollProgress />
       <VideoBackground />
 
-      <main className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 text-gray-800 min-h-screen">
+      <div className="bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 text-gray-800 min-h-screen">
         {/* Enhanced Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden lg:-mt-10">
           {/* Animated Background Elements */}
@@ -338,11 +348,11 @@ export default function EnhancedAboutPage() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="max-w-5xl mx-auto"
+              className="max-w-6xl mx-auto"
             >
               {/* Title */}
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl"
+                className="text-4xl font-bold mb-6 text-white drop-shadow-2xl text-left"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -356,7 +366,7 @@ export default function EnhancedAboutPage() {
 
               {/* Extended Description */}
               <motion.p
-                className="text-xl md:text-2xl  text-white/90 mb-6 drop-shadow-lg leading-relaxed"
+                className="text-xl md:text-2xl  text-white/90 mb-6 drop-shadow-lg leading-relaxed text-left"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -366,7 +376,7 @@ export default function EnhancedAboutPage() {
               </motion.p>
 
               <motion.p
-                className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md max-w-3xl mx-auto"
+                className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md max-w-6xl mx-auto text-left"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
@@ -538,21 +548,7 @@ export default function EnhancedAboutPage() {
                 expertise
               </p>
 
-              {/* Team Stats */}
-              {/* <div className="flex flex-wrap justify-center gap-8 mb-12">
-                <motion.div className="text-center" whileHover={{ scale: 1.05 }}>
-                  <div className="text-3xl font-bold text-primary">{team.length}+</div>
-                  <div className="text-gray-600">Leadership Team</div>
-                </motion.div>
-                <motion.div className="text-center" whileHover={{ scale: 1.05 }}>
-                  <div className="text-3xl font-bold text-primary">100+</div>
-                  <div className="text-gray-600">Years Combined Experience</div>
-                </motion.div>
-                <motion.div className="text-center" whileHover={{ scale: 1.05 }}>
-                  <div className="text-3xl font-bold text-primary">500+</div>
-                  <div className="text-gray-600">Projects Led</div>
-                </motion.div>
-              </div> */}
+      
             </motion.div>
 
             {isLoadingTeam ? (
@@ -679,7 +675,7 @@ export default function EnhancedAboutPage() {
             </svg>
           </div>
         </section>
-      </main>
+      </div>
     </>
   )
 }

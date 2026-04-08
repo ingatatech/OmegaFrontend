@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight} from "lucide-react"
 import VideoBackground from "@/components/video-background"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 
@@ -72,23 +72,15 @@ export default function BlogPage() {
       <div className="min-h-screen">
       {/* Hero Section for OMEGA SIR Ltd */}
 <div className="relative inset-0 bg-gradient-to-b from-primary/90 text-white overflow-hidden">
-  <div className="relative z-10 container mx-auto px-4 py-16 text-center">
-    {/* Company Name */}
-    <motion.h1
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="text-3xl md:text-5xl font-bold font-title mb-4"
-    >
-      OMEGA SIR Ltd
-    </motion.h1>
+  <div className="relative z-10 container mx-auto px-4 py-10">
+
 
     {/* Tagline */}
     <motion.h2
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.8 }}
-      className="text-lg md:text-2xl text-blue-100 font-light italic mb-6"
+      className="max-w-6xl mx-auto text-lg md:text-2xl text-blue-100 font-light italic mb-6 text-left"
     >
       "Building Trust, Designing Comfort, Managing Excellence."
     </motion.h2>
@@ -98,7 +90,7 @@ export default function BlogPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.3, duration: 0.8 }}
-      className="max-w-3xl mx-auto text-blue-100 font-body font-semibold text-base md:text-xl mb-8"
+      className="max-w-6xl mx-auto text-blue-100 font-body text-left font-semibold text-base md:text-xl mb-8"
     >
       A multi-service company delivering excellence in{" "}
       <span className="text-white font-bold">Construction</span>,{" "}
@@ -110,25 +102,7 @@ export default function BlogPage() {
       you build, maintain, and grow with confidence.
     </motion.p>
 
-    {/* Quick Service Highlights */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.5, duration: 0.8 }}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8"
-    >
-      {[
-        { icon: "🏗️", label: "Quality Construction" },
-        { icon: "🛠️", label: "Reliable Maintenance" },
-        { icon: "🎨", label: "Creative Designs" },
-        { icon: "🏠", label: "Property Management" },
-      ].map((service, idx) => (
-        <div key={idx} className="bg-white/10  backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
-          <div className="text-3xl">{service.icon}</div>
-          <p className="mt-2 text-sm font-semibold">{service.label}</p>
-        </div>
-      ))}
-    </motion.div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -156,20 +130,6 @@ export default function BlogPage() {
               </button>
             </motion.div>
   </div>
-
-  {/* Decorative Wave */}
-  <svg
-    className="absolute bottom-0 left-0 w-full h-32 md:h-48 text-white"
-    preserveAspectRatio="none"
-    viewBox="0 0 1440 320"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill="currentColor"
-      fillOpacity="1"
-      d="M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,186.7C672,160,768,128,864,128C960,128,1056,160,1152,170.7C1248,181,1344,171,1392,165.3L1440,160L1440,320L0,320Z"
-    />
-  </svg>
 </div>
 
         

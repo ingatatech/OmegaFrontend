@@ -319,10 +319,10 @@ export default function EnhancedCareersPage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="max-w-4xl mx-auto"
+                className="max-w-6xl mx-auto"
               >
                 <motion.h1
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl"
+                  className="text-4xl font-bold mb-6 text-white drop-shadow-2xl text-left"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
@@ -335,7 +335,7 @@ export default function EnhancedCareersPage() {
                 </motion.h1>
 
                 <motion.p
-                  className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-lg leading-relaxed"
+                  className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-lg leading-relaxed text-left"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
@@ -349,7 +349,7 @@ export default function EnhancedCareersPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                  className="flex flex-col sm:flex-row gap-4 justify-start"
                 >
                   <Button
                     size="lg"
@@ -374,9 +374,9 @@ export default function EnhancedCareersPage() {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Why Choose OMEGA SIR?</h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  We're more than just a workplace—we're a community of passionate professionals building the future
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-left max-w-6xl mx-auto">Why Choose OMEGA SIR?</h2>
+                <p className="text-xl text-gray-600 max-w-6xl mx-auto text-left">
+                  We're more than just a workplace, we're a community of passionate professionals building the future
                 </p>
               </motion.div>
 

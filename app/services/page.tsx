@@ -177,22 +177,22 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-black/10"></div>
 
           {/* Hero Content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 py-10 text-center">
+          <div className="relative z-10 max-w-6xl mx-auto px-4 py-10 text-center">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-bold mb-6 font-title"
+              className="text-4xl  font-bold mb-6 font-title text-left"
             >
               OMEGA SIR Ltd, Your{" "}
-              <span className="text-yellow-300">Service Partner</span>
+              <span className="text-orange-300">Service Partner</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-xl md:text-2xl mb-6 max-w-3xl mx-auto font-body"
+              className="text-2xl mb-6 max-w-6xl mx-auto font-body text-left"
             >
               Comprehensive solutions for{" "}
               <span className="font-bold text-white">construction</span>,{" "}
@@ -207,12 +207,12 @@ export default function ServicesPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-lg text-blue-100/90 max-w-2xl mx-auto mb-6"
+              className="text-lg text-white max-w-6xl mx-auto mb- text-left"
             >
               <p>
                 We deliver end-to-end solutions for every stage of your property
                 or business journey. Our expert team ensures quality,
-                reliability, and innovation in every project—big or small.
+                reliability, and innovation in every project big or small.
               </p>
             </motion.div>
 
@@ -251,19 +251,7 @@ export default function ServicesPage() {
             </motion.div>
           </div>
 
-          {/* Decorative Wave at Bottom */}
-          <svg
-            className="absolute bottom-0 left-0 w-full h-32 md:h-48 text-white"
-            preserveAspectRatio="none"
-            viewBox="0 0 1440 320"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="currentColor"
-              fillOpacity="1"
-              d="M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,186.7C672,160,768,128,864,128C960,128,1056,160,1152,170.7C1248,181,1344,171,1392,165.3L1440,160L1440,320L0,320Z"
-            />
-          </svg>
+       
         </section>
         <section id="services" className="max-w-7xl mx-auto px-4 py-5 bg-gray-100 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

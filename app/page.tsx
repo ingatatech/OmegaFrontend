@@ -118,12 +118,12 @@ const yearsExperience = currentYear - 2014 + 1;
           <div className="absolute inset-0 bg-black/10 z-0" />
 
           {/* Content */}
-          <div className="max-w-3xl mx-auto z-10">
+          <div className="max-w-6xl mx-auto z-10">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl sm:text-5xl font-bold mb-4"
+              className="text-4xl sm:text-5xl font-bold mb-4 text-left"
             >
               Building Excellence, Delivering Solutions
             </motion.h1>
@@ -132,7 +132,7 @@ const yearsExperience = currentYear - 2014 + 1;
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className=" mb-8 font-medium text-blue-100"
+              className=" mb-8 text-2xl font-medium text-blue-100 text-left"
             >
               Your trusted partner for Construction, Building Maintenance, Interior Design, Projection Workshop,
               Property Management & Cleaning services
@@ -142,7 +142,7 @@ const yearsExperience = currentYear - 2014 + 1;
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-start mb-8"
             >
               <Link
                 href="/contact"
@@ -159,32 +159,6 @@ const yearsExperience = currentYear - 2014 + 1;
             </motion.div>
           </div>
 
-          {/* Optional Scroll-down Icon */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 0.9,
-              duration: 0.5,
-              type: "spring",
-              stiffness: 300,
-            }}
-            className="mt-4 z-10"
-          >
-            <button className="bg-white/20 backdrop-blur-sm p-4 rounded-full hover:bg-white/30 transition-all duration-300">
-              <a href="#services">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-white animate-bounce"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </a>
-            </button>
-          </motion.div>
         </section>
 
         {/* Services Overview Section */}
