@@ -135,17 +135,17 @@ export default function ProjectsPage() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.5, type: 'spring', stiffness: 250 }}
-          className="flex flex-col sm:flex-row gap-4 justify-start mt-10"
+          className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center mt-10"
         >
           <button
             onClick={scrollToProjects}
-            className="bg-white text-primary font-bold py-3 px-8 rounded-full shadow hover:bg-gray-100 transition"
+            className="bg-white text-primary font-bold py-3 px-8 rounded-full shadow hover:bg-gray-100 transition w-fit text-center"
           >
             View Projects
           </button>
           <a
             href="/contact"
-            className="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-primary transition"
+            className="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-primary transition w-fit text-center block"
           >
             Start Your Project
           </a>
@@ -289,6 +289,13 @@ export default function ProjectsPage() {
                 <p className="text-gray-500 text-lg">No projects found for the selected category.</p>
               </div>
             )}
+          </div>
+          
+          {/* Bottom wave */}
+          <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+            <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+              <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+            </svg>
           </div>
         </section>
       </div>

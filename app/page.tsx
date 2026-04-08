@@ -161,17 +161,17 @@ const yearsExperience = currentYear - 2014 + 1;
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-start mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center mb-8"
             >
               <Link
                 href="/contact"
-                className="bg-white text-primary font-bold py-3 px-8 rounded-full shadow hover:bg-gray-100 transition"
+                className="bg-white text-primary font-bold py-3 px-8 text-center rounded-full shadow hover:bg-gray-100 transition w-fit"
               >
                 Get Free Quote
               </Link>
               <Link
                 href="/services"
-                className="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-primary transition"
+                className="border-2 border-white text-white font-bold py-3 px-8 text-center rounded-full hover:bg-white hover:text-primary transition w-fit"
               >
                 View Our Services
               </Link>
@@ -296,12 +296,7 @@ const yearsExperience = currentYear - 2014 + 1;
               </span>
               <span className="text-lg font-medium text-gray-200">Years' Experience</span>
             </div>
-            {/* <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold mb-2">
-                <AnimatedCounter end={98} />%
-              </span>
-              <span className="text-lg font-medium text-gray-200">Customer Satisfaction</span>
-            </div> */}
+         
             <div className="flex flex-col items-center">
               <span className="text-4xl font-bold mb-2">
                 <AnimatedCounter end={24} />

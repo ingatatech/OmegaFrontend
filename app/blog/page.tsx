@@ -140,7 +140,7 @@ export default function BlogPage() {
             ) : posts.length >0?(
               <>
         {/* Blog Posts Section */}
-        <section id="blogs" className="py-16 bg-white">
+        <section id="blogs" className="py-16 bg-white relative pb-20">
           <div className="max-w-5xl mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-8">
               {posts.map((post, idx) => (
@@ -234,11 +234,24 @@ export default function BlogPage() {
               </button>
             </div>
           </div>
+          
+          {/* Bottom wave */}
+          <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+            <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+              <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+            </svg>
+          </div>
         </section>
         </>
         ): (
-              <div className="text-center py-12">
+              <div className="text-center py-12 relative pb-20">
                 <p className="text-gray-500">No News available at the moment.</p>
+                {/* Bottom wave */}
+                <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+                  <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+                    <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+                  </svg>
+                </div>
               </div>
             )}
       </div>

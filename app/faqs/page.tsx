@@ -467,7 +467,7 @@ export default function EnhancedFAQPage() {
           </section>
 
           {/* Popular Topics */}
-          <section className="py-5 bg-white">
+          <section className="py-10 bg-white">
             <div className="container mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -516,6 +516,13 @@ export default function EnhancedFAQPage() {
               </div>
             </div>
           </section>
+
+          {/* Bottom wave */}
+          <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+            <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+              <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+            </svg>
+          </div>
         </div>
 ):error ?(
   <div className="min-h-screen bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 flex items-center justify-center">

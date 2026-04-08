@@ -412,7 +412,7 @@ export default function InteractiveContactPage() {
       </div>
     </section>
           {/* Map Section */}
-          <section className="py-10 bg-white backdrop-blur-sm relative overflow-hidden">
+          <section className="py-12 bg-white backdrop-blur-sm relative overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="text-center space-y-6 mb-12">
                 <h2 className="text-4xl lg:text-5xl font-bold text-black">
@@ -458,6 +458,13 @@ export default function InteractiveContactPage() {
                   style={{ animationDelay: "1.5s" }}
                 ></div>
               </div>
+            </div>
+
+            {/* Bottom wave */}
+            <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+              <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+                <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+              </svg>
             </div>
           </section>
         

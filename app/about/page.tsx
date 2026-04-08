@@ -381,19 +381,18 @@ export default function EnhancedAboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-start "
+                className="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center"
               >
                 <Button
                   size="lg"
-                  className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4 w-fit rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <a href="#team">View Our Team</a>
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <a href="#team" className="flex items-center">View Our Team <ArrowRight className="ml-2 w-5 h-5" /></a>
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 rounded-full backdrop-blur-sm bg-transparent"
+                  className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 w-fit rounded-full backdrop-blur-sm bg-transparent inline-flex items-center justify-center"
                 >
                   <Link href="/projects">View Our Projects</Link>
                 </Button>
@@ -621,8 +620,8 @@ export default function EnhancedAboutPage() {
               maintenance needs.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/contact">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <Link href="/contact" className="w-fit">
                 <Button
                   size="lg"
                   className="bg-white text-primary hover:bg-white/90 font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
@@ -632,7 +631,7 @@ export default function EnhancedAboutPage() {
                 </Button>
               </Link>
 
-              <Link href="/projects">
+              <Link href="/projects" className="w-fit">
                 <Button
                   variant="outline"
                   size="lg"

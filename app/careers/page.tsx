@@ -303,7 +303,7 @@ export default function EnhancedCareersPage() {
     <VideoBackground/>
       <ScrollProgress />
 
-      <div className="min-h-screen bg-gradient-to-br  text-gray-800 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br text-gray-800 relative overflow-hidden">
         {/* Animated Background Elements */}
         <motion.div
           style={{ y: y1 }}
@@ -518,7 +518,7 @@ export default function EnhancedCareersPage() {
           </section>
 
           {/* Application Process */}
-          <section className="py-5 bg-gradient-to-br from-primary/5 to-primary/10">
+          <section className="py-10 bg-white">
             <div className="container mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -565,6 +565,12 @@ export default function EnhancedCareersPage() {
             </div>
           </section>
 
+          {/* Bottom wave */}
+          <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
+            <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
+              <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
+            </svg>
+          </div>
         
         </div>
 
