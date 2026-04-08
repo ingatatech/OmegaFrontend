@@ -115,7 +115,7 @@ const yearsExperience = currentYear - 2014 + 1;
       <VideoBackground />
       <div className="min-h-screen text-white flex flex-col">
         {/* Hero Section */}
-        <section className="relative flex flex-col items-center justify-center text-center px-4 py-12 min-h-[80vh] bg-gradient-to-br from-primary/90 via-primary/50 to-white/95 text-white overflow-hidden z-10 lg:-mt-10">
+        <section className="relative flex flex-col items-center justify-center text-center px-4 py-12 bg-gradient-to-br from-primary/90 via-primary/50 to-white/95 text-white overflow-hidden z-10 lg:-mt-10">
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/10 z-0" />
 

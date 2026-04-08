@@ -108,7 +108,7 @@ export default function InteractiveContactPage() {
         </div>
 
         {/* Hero Section with Animated Particles + Waves */}
-        <div className="relative inset-0 bg-gradient-to-b from-primary/90 text-white overflow-hidden">
+        <div className="relative inset-0 bg-gradient-to-br  from-primary/90 via-primary/60 to-primary text-white overflow-hidden">
           {/* Animated Background Particles */}
           <div className="absolute inset-0 pointer-events-none z-0">
             {[...Array(25)].map((_, i) => (
@@ -126,19 +126,19 @@ export default function InteractiveContactPage() {
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-10 container max-w-6xl  mx-auto px-5 py-10">
+          <div className="relative z-10 container max-w-6xl mx-auto px-5 py-10 text-left">
             <h1 className="text-4xl font-bold font-title mb-6 text-left">Get in Touch With OMEGA SIR Ltd</h1>
-            <p className="max-w-6xl mx-auto text-blue-100 font-body font-medium text-base md:text-xl mb-6 text-left">
+            <p className="max-w-6xl mx-auto text-blue-100 font-body font-medium text-base md:text-xl mb-10 text-left">
               Have questions about our services? We're here to help you build, maintain, and grow through
               <span className="text-white font-semibold"> construction</span>,
               <span className="text-white font-semibold"> cleaning</span>,
-              <span className="text-white font-semibold"> Building Maintenance</span>
-              <span className="text-white font-semibold"> Projection Workshop</span>
+              <span className="text-white font-semibold"> Building Maintenance</span>,
+              <span className="text-white font-semibold"> Projection Workshop</span>,
               <span className="text-white font-semibold"> Property Management</span>, and
               <span className="text-white font-semibold"> Interior Design</span> expertise.
             </p>
 
-            <div className="mt-2 inline-block max-w-6xl mx-auto text-center">
+            <div className="flex justify-center w-full">
               <button
                 onClick={() => {
                   const el = document.getElementById("contact-form")
