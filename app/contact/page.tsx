@@ -190,14 +190,15 @@ export default function InteractiveContactPage() {
           </div>
           <div>
             <h3 className="font-medium text-gray-800 text-sm">Our Office</h3>
-            <p className="text-gray-600 text-sm">Triumph house kimironko, Kigali City, Rwanda</p>
+            <p className="text-gray-600 text-sm">Kimironko-Gasabo, Kigali-Rwanda, PO. Box 5020 Kigali, KG 11 Ave</p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           {[
-            { icon: Phone, label: "Main", number: "+250 788 303 061" },
-            { icon: Phone, label: "Emergency", number: "+250 727 065 421" },
+            { icon: Phone, label: "Phone 1", number: "+250781185860" },
+            { icon: Phone, label: "Phone 2", number: "+250781812466" },
+            { icon: Phone, label: "Phone 3", number: "+250783075259" },
           ].map((contact, index) => (
             <div
               key={index}
@@ -223,14 +224,14 @@ export default function InteractiveContactPage() {
           <div className="space-y-1">
             <div>
               <h3 className="font-medium text-gray-800 text-sm">Email</h3>
-              <a href="mailto:info@omegasir.com" className="text-blue-600 hover:underline text-sm">
-                info@omegasir.com
+              <a href="mailto:omegasirltd@gmail.com" className="text-blue-600 hover:underline text-sm">
+                omegasirltd@gmail.com
               </a>
             </div>
             <div>
               <h3 className="font-medium text-gray-800 text-sm">Customer Service</h3>
-              <a href="mailto:service@omegasir.com" className="text-blue-600 hover:underline text-sm">
-                service@omegasir.com
+              <a href="mailto:omegasirltd@gmail.com" className="text-blue-600 hover:underline text-sm">
+                omegasirltd@gmail.com
               </a>
             </div>
           </div>
@@ -434,7 +435,7 @@ export default function InteractiveContactPage() {
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                   <iframe
                     title="Omega Sir Office Map"
-                    src="https://www.google.com/maps?q=Triumph+House+Kimironko+Kigali&output=embed"
+                    src="https://www.google.com/maps?q=Kimironko+Gasabo+Kigali+Rwanda&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0, borderRadius: "1rem", minHeight: "350px" }}

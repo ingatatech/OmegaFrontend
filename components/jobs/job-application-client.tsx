@@ -654,11 +654,11 @@ export default function JobApplicationClient({ jobId }: { jobId: string }) {
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-primary" />
-                      <span>careers@omegasir.com</span>
+                      <span>omegasirltd@gmail.com</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-primary" />
-                      <span>+250 123 456 789</span>
+                      <span>+250 781 185 860 / +250 781 812 466 / +250 783 075 259</span>
                     </div>
                   </div>
                 </div>

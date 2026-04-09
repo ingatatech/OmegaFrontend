@@ -4,7 +4,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import {
   Search,
   ChevronDown,
-  ChevronRight,
   HelpCircle,
   MessageCircle,
   Phone,

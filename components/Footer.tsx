@@ -67,17 +67,25 @@ export default function Footer() {
         <div className="md:col-span-4 flex flex-col gap-3">
           <div className="font-semibold mb-2 text-lg">Contact Us</div>
           <ul className="text-gray-100 text-base flex flex-col gap-2">
-            <li className="flex items-center gap-2">
-              <MapPin/>
-              Triumph house kimironko, Kigali City, Rwanda
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-1 shrink-0"/>
+              <span>Kimironko-Gasabo ,Kigali-Rwanda, PO. Box 5020 Kigali, KG 11 Ave</span>
             </li>
             <li className="flex items-center gap-2">
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.08a2 2 0 0 1 .89-1.68l7-4.2a2 2 0 0 1 2.22 0l7 4.2a2 2 0 0 1 .89 1.68z"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              <a href="tel:+250788303061" className="hover:text-white transition">+250 788 303 061</a>
+              <a href="tel:+250781185860" className="hover:text-white transition">+250 781 185 860</a>
+            </li>
+            <li className="flex items-center gap-2">
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.08a2 2 0 0 1 .89-1.68l7-4.2a2 2 0 0 1 2.22 0l7 4.2a2 2 0 0 1 .89 1.68z"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <a href="tel:+250781812466" className="hover:text-white transition">+250 781 812 466</a>
+            </li>
+            <li className="flex items-center gap-2">
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.08a2 2 0 0 1 .89-1.68l7-4.2a2 2 0 0 1 2.22 0l7 4.2a2 2 0 0 1 .89 1.68z"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <a href="tel:+250783075259" className="hover:text-white transition">+250 783 075 259</a>
             </li>
             <li className="flex items-center gap-2">
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 10.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8.5"/><path d="M3.27 6.96 12 13l8.73-6.04A2 2 0 0 0 19.5 5h-15A2 2 0 0 0 3.27 6.96z"/></svg>
-              <a href="mailto:info@omegasir.com" className="hover:text-white transition">info@omegasir.com</a>
+              <a href="mailto:omegasirltd@gmail.com" className="hover:text-white transition">omegasirltd@gmail.com</a>
             </li>
           </ul>
         </div>
