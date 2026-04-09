@@ -56,7 +56,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 const currentYear = new Date().getFullYear();
-const yearsExperience = currentYear - 2014 + 1;
+const yearsExperience = currentYear - 2015;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -269,10 +269,10 @@ const yearsExperience = currentYear - 2014 + 1;
 
         {/* Statistics/Achievements Section */}
         <section className="w-full py-10 px-4 bg-gradient-to-r from-primary via-gray-400/10 to-primary text-white animate-fade-in-up">
-          <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-8 text-center">
+          <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
               <span className="text-4xl font-bold mb-2">
-                <AnimatedCounter end={projects.length > 0 ? projects.length  : 500} />+
+                <AnimatedCounter end={20} />+
               </span>
               <span className="text-lg font-medium text-gray-200">Projects Completed</span>
             </div>
@@ -282,7 +282,13 @@ const yearsExperience = currentYear - 2014 + 1;
               </span>
               <span className="text-lg font-medium text-gray-200">Years' Experience</span>
             </div>
-         
+          <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2">
+                <AnimatedCounter end={200} />+
+              
+              </span>
+              <span className="text-lg font-medium text-gray-200">Client Served</span>
+            </div>
             <div className="flex flex-col items-center">
               <span className="text-4xl font-bold mb-2">
                 <AnimatedCounter end={24} />
