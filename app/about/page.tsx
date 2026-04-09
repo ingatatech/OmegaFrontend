@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image"
 import {
   Eye,
   Heart,
@@ -9,6 +8,7 @@ import {
   ArrowRight,
   CheckCircle,
   Users,
+  User,
   Globe,
   Building2,
   HardHat,
@@ -21,20 +21,13 @@ import {
   Lightbulb,
   Leaf,
 } from "lucide-react"
-import { useEffect, useState, useRef } from "react"
-import { motion,  AnimatePresence } from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  CarouselDots,
-} from "@/components/ui/carousel"
+
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import Link from "next/link"
-
+import VideoBackground from "@/components/video-background"
 interface TeamMember {
   id: string
   name: string
@@ -176,76 +169,75 @@ const InteractiveFeatureCard = ({ feature, index }: { feature: any; index: numbe
   )
 }
 
-// Enhanced Leadership Card for Carousel
-const EnhancedLeadershipCard = ({ member, index }: { member: TeamMember; index: number }) => {
+// Team Member Card
+const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }) => (
+  <motion.div
+    key={member.id}
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    whileHover={{ y: -12 }}
+    className="relative group cursor-pointer"
+  >
+    <div className="relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/50 h-full">
+      {/* Blue header background */}
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-br from-blue-500 to-indigo-600" />
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="relative h-[420px] w-full max-w-sm mx-auto perspective-1000"
-    >
-      <motion.div
-        className="relative w-full h-full  cursor-pointer"
-        transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-      >
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 p-8 text-white shadow-2xl">
-          <div className="flex flex-col items-center h-full justify-center">
-            <motion.div
-              className="relative w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-white/30 shadow-xl"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Image
-                src={member.image || "/placeholder.svg?height=160&width=160"}
-                alt={member.name}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
-            </motion.div>
+      {/* LinkedIn Badge */}
+      {member.linkedin && (
+        <a
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-6 right-6 z-20 flex items-center justify-center w-11 h-11 rounded-xl bg-white shadow-lg text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-6"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Linkedin className="w-5 h-5" />
+        </a>
+      )}
 
-            <h3 className="text-2xl font-bold mb-2 text-center">{member.name}</h3>
-            <p className="text-white/90 text-lg text-center mb-4">{member.position}</p>
-
-            <div className="flex space-x-3 mb-3">
-              <motion.a
-                href={member.linkedin || "https://www.linkedin.com/"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin className="w-5 h-5" />
-              </motion.a>
+      {/* Avatar */}
+      <div className="relative pt-4 pb-4 px-6">
+        <div className="flex flex-col items-center">
+          <div className="relative group/avatar">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 scale-110" />
+            <div className="relative w-36 h-44 rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 p-1 shadow-xl group-hover/avatar:scale-105 transition-transform duration-300">
+              <div className="w-full h-full rounded-2xl border-4 border-white overflow-hidden">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                    <User className="w-16 h-16 text-blue-400" />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
-  )
-}
+      </div>
 
-// Video Background Component
-const VideoBackground = () => {
-  const videoRef = useRef<HTMLVideoElement>(null)
+      {/* Content */}
+      <div className="relative px-6 pb-6">
+        <div className="text-center">
+          <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-700 transition-colors duration-300">
+            {member.name}
+          </h3>
+          <p className="text-sm font-semibold text-blue-600" dangerouslySetInnerHTML={{ __html: member.position }} />
+        </div>
+      </div>
 
-  return (
-    <div className="video-background">
-      <video ref={videoRef} className="video-background-element" autoPlay muted loop playsInline>
-        <source src="/videos/video1.mp4" type="video/mp4" />
-      </video>
-      <div
-        className="video-overlay"
-        style={{
-          background: `linear-gradient(135deg, rgba(23, 96, 176, 0.85) 0%, rgba(23, 96, 176, 0.8) 50%, rgba(23, 96, 176, 0.9) 100%)`,
-        }}
-      />
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </div>
-  )
-}
+
+    {/* Floating shadow */}
+    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105" />
+  </motion.div>
+)
 
 export default function EnhancedAboutPage() {
   const [activeTab, setActiveTab] = useState("mission")
@@ -513,7 +505,7 @@ export default function EnhancedAboutPage() {
             >
               <div className="flex items-center justify-center mb-4">
                 <Globe className="w-8 h-8 text-primary mr-3" />
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800">Meet Our Leadership</h2>
+                <h2 className="text-4xl font-bold text-gray-800">Meet Our Leadership</h2>
               </div>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
                 Experienced leaders driving innovation and excellence across all our operations with decades of combined
@@ -528,47 +520,19 @@ export default function EnhancedAboutPage() {
                 <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary"></div>
               </div>
             ) : team.length > 0 ? (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="relative"
-              >
-                <Carousel
-                  opts={{
-                    align: "center",
-                    loop: true,
-                  }}
-                  className="w-full max-w-6xl mx-auto"
-                >
-                  <CarouselContent className="-ml-2 md:-ml-4">
-                    {team.map((member, index) => (
-                      <CarouselItem key={member.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                        <div className="p-2">
-                          <EnhancedLeadershipCard member={member} index={index} />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-
-                  {/* Custom Navigation Buttons */}
-                  <CarouselPrevious className="hidden md:flex -left-16 bg-white/90 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white transition-all duration-300" />
-                  <CarouselNext className="hidden md:flex -right-16 bg-white/90 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white transition-all duration-300" />
-
-                  {/* Dots Navigation */}
-                  <CarouselDots className="mt-3" />
-                </Carousel>
-
-                {/* Mobile Navigation Hint */}
+              <AnimatePresence mode="wait">
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="md:hidden text-center mt-4 text-gray-500 text-sm"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
-                  Swipe to explore our team
+                  {team.map((member, index) => (
+                    <TeamMemberCard key={member.id} member={member} index={index} />
+                  ))}
                 </motion.div>
-              </motion.div>
+              </AnimatePresence>
             ) : (
               <div className="text-center py-20">
                 <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
