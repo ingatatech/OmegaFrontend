@@ -10,8 +10,8 @@ export default function WhatsAppChat() {
   // Use the actual number provided: 0781185860
   // which with code is +250 781 185 860
   const phoneNumberForWa = "250781185860";
-//   const displayPhone = "+250 781 185 860";
-  
+//   const displayPhone = "+250 781 185 860";  
+  const draftMessage = "Hello! I would like to know more about OMEGA SIR Ltd services.";  
   // Format current time context roughly showing "HH:MM"
   const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
@@ -68,7 +68,7 @@ export default function WhatsAppChat() {
           {/* Footer Actions */}
           <div className="bg-white px-4 py-4 md:px-5 md:py-4 flex flex-col gap-2.5 items-center shrink-0">
             <a
-              href={`https://wa.me/${phoneNumberForWa}`}
+              href={`https://wa.me/${phoneNumberForWa}?text=${encodeURIComponent(draftMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] py-2.5 md:py-3 text-sm md:text-base font-bold text-white transition hover:bg-[#128c7e]"

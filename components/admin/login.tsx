@@ -3,7 +3,7 @@ import { useState } from "react"
 import type React from "react"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { Eye, EyeOff, Lock, Mail, ArrowRight, Loader } from "lucide-react"
+import { Eye, EyeOff, Lock, Mail, ArrowRight, Loader, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { login } from "@/lib/api"
@@ -108,7 +108,14 @@ export default function AdminLogin() {
           className="absolute top-1/2 left-1/4 w-32 h-32 bg-white/10 rounded-full blur-2xl"
         />
       </div>
-
+   {/* Back to site Button */}
+      <Link 
+        href="/" 
+        className="absolute top-6 left-6 md:top-10 md:left-10 z-20 flex items-center gap-2 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md px-4 py-2 rounded-full font-medium transition-all hover:scale-105 shadow-sm border border-white/20"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to site
+      </Link>
       {/* Login Card */}
       <motion.div
         initial={{ opacity: 0, y: 50, scale: 0.9 }}

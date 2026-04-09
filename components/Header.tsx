@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact Us" },
   { href: "/faqs", label: "FAQs" },
+  { href: "/admin/login", label: "Login" },
 ];
 
 export default function Header() {
