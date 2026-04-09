@@ -7,7 +7,6 @@ import {
   Star,
   MapPin,
   ArrowRight,
-  Loader2,
 } from "lucide-react"
 import Link from "next/link"
 import { fetchProjects } from "@/lib/api"

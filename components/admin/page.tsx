@@ -18,7 +18,6 @@ import {
   RefreshCw,
   HelpCircle,
   Handshake,
-  Loader2,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ResponsiveContainer, Tooltip, XAxis, YAxis, Legend, BarChart, Bar } from "recharts"
