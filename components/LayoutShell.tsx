@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
-
+import WhatsAppChat from "./WhatsAppChat";
 
 export default function LayoutShell({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname();
@@ -12,6 +12,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
 			{!isAdmin && <Header />}
 			<main className="flex-1">{children}</main>
 			{!isAdmin && <Footer />}
+			{!isAdmin && <WhatsAppChat />}
 		</>
 	);
 }
