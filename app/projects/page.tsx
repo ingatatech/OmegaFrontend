@@ -15,6 +15,7 @@ import type { Project } from "@/lib/types"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import { motion } from "framer-motion"
 import VideoBackground from "@/components/video-background"
+import Loader from "@/components/Loader"
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
@@ -190,12 +191,9 @@ export default function ProjectsPage() {
 
             {/* Projects Grid/List */}
             {loading ?(
-                    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-gray-600">Loading projects...</p>
-        </div>
-      </div>
+         	<div className="min-h-screen py-10 bg-white flex items-center justify-center">
+      <Loader size="lg" />
+    </div>
             ):filteredProjects.length > 0 ? (
                <div className={`grid gap-8 ${viewMode === "grid" ? "lg:grid-cols-2 xl:grid-cols-3" : "grid-cols-1"}`}>
               {filteredProjects.map((project) => (

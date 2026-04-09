@@ -4,7 +4,6 @@ import {
   MapPin,
   Star,
   ArrowLeft,
-  Loader2,
   Quote,
   Building,
   Share2,
@@ -17,6 +16,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Project } from "@/lib/types"
 import ScrollProgress from "@/components/ui/ScrollProgress"
+import Loader from "../Loader"
 
 export default function ProjectDetailClient({ id }: { id: string }) {
   const [project, setProject] = useState<Project | null>(null)
@@ -84,12 +84,9 @@ export default function ProjectDetailClient({ id }: { id: string }) {
     return (
       <>
         <ScrollProgress />
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center">
-          <div className="text-center">
-            <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-            <p className="text-gray-600 text-lg">Loading project details...</p>
-          </div>
-        </div>
+     	<div className="min-h-screen py-10 bg-white flex items-center justify-center">
+      <Loader size="lg" />
+    </div>
       </>
     )
   }

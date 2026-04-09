@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Calendar, Clock, Twitter, Facebook, Linkedin, Send, Loader2, ArrowLeft } from "lucide-react"
+import { Calendar, Clock, Twitter, Facebook, Linkedin, Send, ArrowLeft } from "lucide-react"
 import ScrollProgress from "@/components/ui/ScrollProgress"
+import Loader from "../Loader"
 
 
 
@@ -82,12 +83,9 @@ export default function BlogDetailClient({ id }: { id: string }) {
     return (
       <>
         <ScrollProgress />
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 flex items-center justify-center">
-          <div className="text-center">
-            <Loader2 className="h-12 w-12 text-primary animate-spin mx-auto mb-4" />
-            <p className="text-gray-600 text-lg">Loading news...</p>
-          </div>
-        </div>
+     	<div className="min-h-screen py-10 bg-white flex items-center justify-center">
+      <Loader size="lg" />
+    </div>
       </>
     )
   }

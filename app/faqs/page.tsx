@@ -15,7 +15,6 @@ import {
   Users,
   Filter,
   X,
-  Loader2,
   AlertCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -24,6 +23,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress"
 import { fetchFAQs } from "@/lib/api"
 import { FAQ, FAQCategory } from "@/lib/types"
 import VideoBackground from "@/components/video-background"
+import Loader from "@/components/Loader"
 
 // Icon mapping for categories
 const categoryIcons: { [key: string]: any } = {
@@ -301,12 +301,9 @@ export default function EnhancedFAQPage() {
 
 {loading? (
 
-     <div className="min-h-screen bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 flex items-center justify-center">
-          <div className="text-center">
-            <Loader2 className="w-12 h-12 animate-spin text-white mx-auto mb-4" />
-            <p className="text-lg text-white">Loading FAQs...</p>
-          </div>
-        </div>
+    	<div className="min-h-screen py-10 bg-white flex items-center justify-center">
+      <Loader size="lg" />
+    </div>
 ):faqs.length >0 ?(
 
 <div>

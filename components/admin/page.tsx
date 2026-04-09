@@ -24,6 +24,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ResponsiveContainer, Tooltip, XAxis, YAxis, Legend, BarChart, Bar } from "recharts"
 import api from "@/lib/axios"
 import ProfileModal from "./ProfileModal"
+import Loader from "../Loader"
 
 interface DashboardStats {
   blogs: number
@@ -414,12 +415,9 @@ export default function AdminDashboard() {
               </BarChart>
             </ResponsiveContainer>
           ) : (
-            <div className="flex items-center justify-center h-64 text-gray-500">
-              <div className="text-center">
-                <Loader2 className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                <p className="text-sm">Loading detailed analytics...</p>
-              </div>
-            </div>
+            	<div className="min-h-screen py-10 bg-white flex items-center justify-center">
+      <Loader size="lg" />
+    </div>
           )}
         </motion.div>
       </div>

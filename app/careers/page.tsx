@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import type React from "react"
 
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { Briefcase, MapPin, Clock, Send, Users, FileText, Search, Filter, ChevronDown, CheckCircle, Star, TrendingUp, Heart, Target, Loader2 } from 'lucide-react'
+import { Briefcase, MapPin, Clock, Send, Users, FileText, Search, Filter, ChevronDown, CheckCircle, Star, TrendingUp, Heart, Target } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import ScrollProgress from "@/components/ui/ScrollProgress"
@@ -11,6 +11,7 @@ import { fetchJobs } from "@/lib/api"
 import { Job } from "@/lib/types"
 import Link from "next/link"
 import VideoBackground from "@/components/video-background"
+import Loader from "@/components/Loader"
 
 const steps = [
   {
@@ -479,12 +480,9 @@ export default function EnhancedCareersPage() {
 
               {/* Job Cards */}
               {loading ? (
-                <div className="flex justify-center items-center py-16">
-                  <div className="text-center">
-                    <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-                    <p className="text-gray-600 text-lg">Loading job opportunities...</p>
-                  </div>
-                </div>
+               	<div className="min-h-screen py-10 bg-white flex items-center justify-center">
+      <Loader size="lg" />
+    </div>
               ) : error ? (
                 <div className="text-center py-16">
                   <div className="text-6xl mb-4">⚠️</div>
