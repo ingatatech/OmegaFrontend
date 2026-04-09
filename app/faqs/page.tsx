@@ -466,56 +466,7 @@ export default function EnhancedFAQPage() {
             </div>
           </section>
 
-          {/* Popular Topics */}
-          <section className="py-10 bg-white">
-            <div className="container mx-auto px-4">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
-              >
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Popular Topics</h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  Quick access to the most frequently asked questions
-                </p>
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {categories
-                  .filter((cat) => cat.name !== "All" && cat.count > 0)
-                  .slice(0, 6)
-                  .map((category, index) => (
-                    <motion.button
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      onClick={() => {
-                        setSelectedCategory(category.name)
-                        document.getElementById("faqs")?.scrollIntoView({ behavior: "smooth" })
-                      }}
-                      className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 text-left hover:shadow-lg transition-all duration-300 border border-primary/10"
-                    >
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="p-3 rounded-xl bg-primary/10">
-                          <category.icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-800">{category.name}</h3>
-                          <p className="text-sm text-gray-600">{category.count} questions</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center text-primary text-sm font-medium">
-                        View Questions
-                        <ChevronRight className="w-4 h-4 ml-1" />
-                      </div>
-                    </motion.button>
-                  ))}
-              </div>
-            </div>
-          </section>
+    
 
           {/* Bottom wave */}
           <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">

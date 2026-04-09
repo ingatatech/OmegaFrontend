@@ -96,8 +96,7 @@ export default function BlogPage() {
       <span className="text-white font-bold">Construction</span>,{" "}
       <span className="text-white font-bold">Building Maintenance</span>,{" "}
       <span className="text-white font-bold">Interior Design</span>,{" "}
-      <span className="text-white font-bold">Projection Workshop</span>,{" "}
-      <span className="text-white font-bold">Property Management</span>, and{" "}
+      <span className="text-white font-bold">Production Workshop</span>,{" "}
       <span className="text-white font-bold">Cleaning Services</span>. We help
       you build, maintain, and grow with confidence.
     </motion.p>

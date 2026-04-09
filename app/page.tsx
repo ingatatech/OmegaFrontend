@@ -153,8 +153,8 @@ const yearsExperience = currentYear - 2014 + 1;
               transition={{ delay: 0.3, duration: 0.8 }}
               className=" mb-8 text-2xl font-medium text-blue-100 text-left"
             >
-              Your trusted partner for Construction, Building Maintenance, Interior Design, Projection Workshop,
-              Property Management & Cleaning services
+              Your trusted partner for Construction, Building Maintenance, Interior Design, Production Workshop,
+              & Cleaning services
             </motion.p>
 
             <motion.div
@@ -247,12 +247,12 @@ const yearsExperience = currentYear - 2014 + 1;
                   Start Project
                 </Link>
               </div>
-              {/* Projection Workshop */}
+              {/* Production Workshop */}
               <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
                 <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
                   <Factory className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Projection Workshop</h3>
+                <h3 className="text-xl font-semibold mb-2">Production Workshop</h3>
                 <p className="text-center mb-4 text-gray-700">Custom furniture, fabrication, and bespoke installations</p>
                 <Link
                   href="/contact"
@@ -261,22 +261,8 @@ const yearsExperience = currentYear - 2014 + 1;
                   Get Quote
                 </Link>
               </div>
-              {/* Property Management */}
-              <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
-                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
-                  <ClipboardList className="w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Property Management</h3>
-                <p className="text-center mb-4 text-gray-700">
-                  Professional management for residential and commercial properties
-                </p>
-                <Link
-                  href="/contact"
-                  className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
-                >
-                  Contact Manager
-                </Link>
-              </div>
+       
+            
             </div>
           </div>
         </section>

@@ -133,8 +133,8 @@ export default function InteractiveContactPage() {
               <span className="text-white font-semibold"> construction</span>,
               <span className="text-white font-semibold"> cleaning</span>,
               <span className="text-white font-semibold"> Building Maintenance</span>,
-              <span className="text-white font-semibold"> Projection Workshop</span>,
-              <span className="text-white font-semibold"> Property Management</span>, and
+              <span className="text-white font-semibold"> Production Workshop</span>,
+              
               <span className="text-white font-semibold"> Interior Design</span> expertise.
             </p>
 
@@ -346,8 +346,8 @@ export default function InteractiveContactPage() {
             <option>Cleaning Services</option>
             <option>Building Maintenance</option>
             <option>Interior Design</option>
-            <option>Projection Workshop</option>
-            <option>Property Management</option>
+            <option>Production Workshop</option>
+          
           </select>
         </div>
         <div>

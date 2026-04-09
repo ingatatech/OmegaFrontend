@@ -35,7 +35,7 @@ export default function Footer() {
     <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-10 py-3">
         {/* Logo & Description - Takes 5 columns */}
         <div className="md:col-span-5 flex flex-col gap-4">
-          <p className="text-gray-100 text-base max-w-md">OMEGA SIR Ltd is a multi-service company specializing in Construction, Building Maintenance, Interior Design, Projection Workshop, Property Management & Cleaning services. We deliver outstanding solutions and build lasting relationships with our clients.</p>
+          <p className="text-gray-100 text-base max-w-md">OMEGA SIR Ltd is a multi-service company specializing in Construction, Building Maintenance, Interior Design, Production Workshop & Cleaning services. We deliver outstanding solutions and build lasting relationships with our clients.</p>
           <div className="flex gap-4 mt-2">
             <Link href="https://www.facebook.com/omegasirrwanda/" className="hover:opacity-80 transition" aria-label="Facebook">
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H6v4h4v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>

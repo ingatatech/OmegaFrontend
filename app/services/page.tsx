@@ -120,7 +120,7 @@ const services = [
   {
     id: "workshop",
     icon: Factory,
-    title: "Projection Workshop",
+    title: "Production Workshop",
     description: "Custom furniture, fabrication, and bespoke installations.",
     items: [
       "Custom furniture manufacturing",
@@ -130,21 +130,7 @@ const services = [
     ],
     cta: "Request Workshop Quote",
   },
-  {
-    id: "property",
-    icon: ClipboardList,
-    title: "Property Management",
-    description:
-      "Professional management for residential and commercial properties.",
-    items: [
-      "Tenant screening and leasing",
-      "Rent collection and accounting",
-      "Property inspections and maintenance coordination",
-      "Legal compliance and documentation",
-      "Asset performance reporting",
-    ],
-    cta: "Contact Property Manager",
-  },
+
 ];
 
 export default function ServicesPage() {
@@ -199,8 +185,8 @@ export default function ServicesPage() {
               <span className="font-bold text-white">maintenance</span>,{" "}
               <span className="font-bold text-white">cleaning</span>,{" "}
               <span className="font-bold text-white">design</span>,{" "}
-              <span className="font-bold text-white">production</span>, and{" "}
-              <span className="font-bold text-white">property management</span>.
+              <span className="font-bold text-white">production</span>.
+              
             </motion.p>
 
             <motion.div
