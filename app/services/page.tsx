@@ -7,7 +7,6 @@ import {
   Sparkles,
   Paintbrush,
   Factory,
-  ClipboardList,
   CheckCircle,
 } from "lucide-react";
 import VideoBackground from "@/components/video-background";

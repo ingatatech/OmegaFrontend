@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import LayoutShell from "@/components/LayoutShell";
+import WhatsAppChat from "@/components/WhatsAppChat";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         	<Toaster position="top-right" />
         		<LayoutShell>{children}</LayoutShell>
+            <WhatsAppChat />
       </body>
     </html>
   );

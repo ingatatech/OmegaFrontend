@@ -1,5 +1,6 @@
 "use client"
 
+import { Building2, Wrench, Sparkles, Factory,SprayCan } from "lucide-react"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import VideoBackground from "@/components/video-background"
 import { motion } from "framer-motion"
@@ -47,7 +48,6 @@ function getInitials(name: string) {
 }
 
 
-import { Building2, Wrench, Sparkles, Factory, ClipboardList, SprayCan } from "lucide-react"
 
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([])
