@@ -5,7 +5,7 @@ import type React from "react"
 import AdminLayout from "./layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Handshake, Edit, Trash, X, Search, Plus, Calendar } from "lucide-react"
+import { Handshake, Edit, Trash, X, Search, Plus, Calendar, Eye } from "lucide-react"
 import api from "@/lib/axios"
 import toast from "react-hot-toast"
 import { motion, AnimatePresence } from "framer-motion"
@@ -20,7 +20,9 @@ interface Partner {
 export default function AdminPartners() {
   const [partners, setPartners] = useState<Partner[]>([])
   const [showModal, setShowModal] = useState(false)
+  const [showViewModal, setShowViewModal] = useState(false)
   const [editingPartner, setEditingPartner] = useState<Partner | null>(null)
+  const [viewingPartner, setViewingPartner] = useState<Partner | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
@@ -86,6 +88,11 @@ const [isSubmitting, setIsSubmitting] = useState(false)
     }finally {
       setIsSubmitting(false)
     }
+  }
+
+  function handleView(partner: Partner) {
+    setViewingPartner(partner)
+    setShowViewModal(true)
   }
 
   function handleEdit(partner: Partner) {
@@ -225,6 +232,14 @@ const [isSubmitting, setIsSubmitting] = useState(false)
                           <Button
                             size="sm"
                             variant="outline"
+                            onClick={() => handleView(partner)}
+                            className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
                             onClick={() => handleEdit(partner)}
                             className="border-primary/20 text-primary hover:bg-primary/5"
                           >
@@ -282,6 +297,45 @@ const [isSubmitting, setIsSubmitting] = useState(false)
           </div>
         </motion.div>
       )}
+
+      {/* View Partner Modal */}
+      <AnimatePresence>
+        {showViewModal && viewingPartner && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-2xl p-8 w-full max-w-md"
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Partner Details</h2>
+                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="space-y-4 text-center">
+                {viewingPartner.image ? (
+                  <img src={viewingPartner.image} alt={viewingPartner.name} className="h-32 w-auto object-contain mx-auto bg-gray-50 rounded-xl p-4" />
+                ) : (
+                  <div className="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center mx-auto">
+                    <Handshake className="w-10 h-10 text-gray-400" />
+                  </div>
+                )}
+                <h3 className="text-xl font-bold text-gray-900">{viewingPartner.name}</h3>
+                <p className="text-sm text-gray-500">
+                  Added: {new Date(viewingPartner.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Add/Edit Modal */}
       <AnimatePresence>

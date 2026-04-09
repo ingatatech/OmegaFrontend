@@ -5,7 +5,7 @@ import type React from "react"
 import AdminLayout from "./layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { FileText, Edit, Trash, X, Search, Plus } from "lucide-react"
+import { FileText, Edit, Trash, X, Search, Plus, Eye } from "lucide-react"
 import api from "@/lib/axios"
 import toast from "react-hot-toast"
 import RichTextEditor from "@/components/ui/RichTextEditor"
@@ -40,7 +40,9 @@ interface FormData {
 export default function AdminBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([])
   const [showModal, setShowModal] = useState(false)
+  const [showViewModal, setShowViewModal] = useState(false)
   const [editingBlog, setEditingBlog] = useState<Blog | null>(null)
+  const [viewingBlog, setViewingBlog] = useState<Blog | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
@@ -220,6 +222,11 @@ export default function AdminBlogs() {
     }
   }
 
+  function handleView(blog: Blog) {
+    setViewingBlog(blog)
+    setShowViewModal(true)
+  }
+
   function handleEdit(blog: Blog) {
     setEditingBlog(blog)
     setForm({
@@ -374,6 +381,14 @@ export default function AdminBlogs() {
                           <Button
                             size="sm"
                             variant="outline"
+                            onClick={() => handleView(blog)}
+                            className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
                             onClick={() => handleEdit(blog)}
                             className="border-primary/20 text-primary hover:bg-primary/5"
                           >
@@ -431,6 +446,47 @@ export default function AdminBlogs() {
           </div>
         )}
       </motion.div>
+
+      {/* View Blog Modal */}
+      <AnimatePresence>
+        {showViewModal && viewingBlog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-2xl p-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Blog Post Details</h2>
+                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="space-y-6">
+                {viewingBlog.image && (
+                  <img src={viewingBlog.image} alt={viewingBlog.title} className="w-full h-64 object-cover rounded-xl" />
+                )}
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-900 mb-2">{viewingBlog.title}</h1>
+                  <p className="text-sm text-gray-500">
+                    Published: {new Date(viewingBlog.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Content</h3>
+                  <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: viewingBlog.content }} />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Add/Edit Modal */}
       <AnimatePresence>

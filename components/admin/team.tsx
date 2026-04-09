@@ -16,6 +16,7 @@ import {
   User,
   Calendar,
   Linkedin,
+  Eye,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import api from "@/lib/axios"
@@ -38,7 +39,9 @@ export default function AdminTeam() {
   const [searchTerm, setSearchTerm] = useState("")
   const [page, setPage] = useState(1)
   const [showModal, setShowModal] = useState(false)
+  const [showViewModal, setShowViewModal] = useState(false)
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null)
+  const [viewingMember, setViewingMember] = useState<TeamMember | null>(null)
   const [imageFile, setImageFile] = useState<File | null>(null)
  const [isSubmitting, setIsSubmitting] = useState(false)
   
@@ -101,6 +104,11 @@ export default function AdminTeam() {
     }finally {
       setIsSubmitting(false)
     }
+  }
+
+  function handleView(member: TeamMember) {
+    setViewingMember(member)
+    setShowViewModal(true)
   }
 
   function handleEdit(member: TeamMember) {
@@ -294,6 +302,14 @@ export default function AdminTeam() {
                             <Button
                               size="sm"
                               variant="outline"
+                              onClick={() => handleView(member)}
+                              className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
                               onClick={() => handleEdit(member)}
                               className="border-primary/20 text-primary hover:bg-primary/5"
                             >
@@ -356,6 +372,60 @@ export default function AdminTeam() {
           </div>
         </motion.div>
       )}
+
+      {/* View Member Modal */}
+      <AnimatePresence>
+        {showViewModal && viewingMember && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-2xl p-8 w-full max-w-md"
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Team Member Details</h2>
+                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="space-y-4 text-center">
+                {viewingMember.image ? (
+                  <img src={viewingMember.image} alt={viewingMember.name} className="w-28 h-28 rounded-full object-cover mx-auto border-4 border-primary/20" />
+                ) : (
+                  <div className="w-28 h-28 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+                    <User className="w-12 h-12 text-gray-400" />
+                  </div>
+                )}
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{viewingMember.name}</h3>
+                  <p className="text-primary font-medium">{viewingMember.position}</p>
+                </div>
+                {viewingMember.linkedin && (
+                  <a
+                    href={viewingMember.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    LinkedIn Profile
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+                <p className="text-sm text-gray-500">
+                  Added: {new Date(viewingMember.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Add/Edit Modal */}
       <AnimatePresence>
