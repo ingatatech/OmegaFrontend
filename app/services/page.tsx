@@ -8,6 +8,7 @@ import {
   Paintbrush,
   Factory,
   CheckCircle,
+  ShieldAlert,
 } from "lucide-react";
 import VideoBackground from "@/components/video-background";
 import { motion } from "framer-motion";
@@ -129,7 +130,19 @@ const services = [
     ],
     cta: "Request Workshop Quote",
   },
-
+  {
+    id: "fire-protection",
+    icon: ShieldAlert,
+    title: "Fire Protection Services",
+    description:
+      "Inspection, installation, testing, and maintenance of fire prevention systems for residential and commercial buildings.",
+    items: [
+      "Fire Extinguisher Supply and Refilling",
+      "Fire Protection System Design",
+      "Comprehensive Annual Maintenance Contract (AMC)",
+    ],
+    cta: "Request Fire Protection Quote",
+  },
 ];
 
 export default function ServicesPage() {

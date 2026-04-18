@@ -1,6 +1,6 @@
 "use client"
 
-import { Building2, Wrench, Sparkles, Factory,SprayCan } from "lucide-react"
+import { Building2, Wrench, Sparkles, Factory,SprayCan, ShieldAlert } from "lucide-react"
 import ScrollProgress from "@/components/ui/ScrollProgress"
 import VideoBackground from "@/components/video-background"
 import { motion } from "framer-motion"
@@ -259,6 +259,20 @@ const yearsExperience = currentYear - 2015;
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
                   Get Quote
+                </Link>
+              </div>
+              {/* Fire Protection Services */}
+              <div className="flex flex-col items-center bg-primary/5 rounded-xl p-6 shadow hover:shadow-lg transition hover:scale-105 duration-300">
+                <div className="bg-primary rounded-full p-4 mb-4 animate-bounce-slow text-white">
+                  <ShieldAlert className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Fire Protection Services</h3>
+                <p className="text-center mb-4 text-gray-700">Inspection, installation, testing, and maintenance of fire prevention systems</p>
+                <Link
+                  href="/services"
+                  className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
+                >
+                  Learn More
                 </Link>
               </div>
        
