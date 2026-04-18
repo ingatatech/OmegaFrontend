@@ -195,10 +195,10 @@ const yearsExperience = currentYear - 2015;
                   Residential & commercial building construction, renovations, and project management
                 </p>
                 <Link
-                  href="/services"
+                  href="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
-                  Learn More
+                  Request Quote
                 </Link>
               </div>
               {/* Building Maintenance */}
@@ -214,7 +214,7 @@ const yearsExperience = currentYear - 2015;
                   href="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
-                  Book Service
+                  Request Quote
                 </Link>
               </div>
               {/* Cleaning Services */}
@@ -230,7 +230,7 @@ const yearsExperience = currentYear - 2015;
                   href="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
-                  Schedule Now
+                  Request Quote
                 </Link>
               </div>
               {/* Interior Design */}
@@ -244,7 +244,7 @@ const yearsExperience = currentYear - 2015;
                   href="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
-                  Start Project
+                  Request Quote
                 </Link>
               </div>
               {/* Production Workshop */}
@@ -258,7 +258,7 @@ const yearsExperience = currentYear - 2015;
                   href="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
-                  Get Quote
+                  Request Quote
                 </Link>
               </div>
               {/* Fire Protection Services */}
@@ -269,10 +269,10 @@ const yearsExperience = currentYear - 2015;
                 <h3 className="text-xl font-semibold mb-2">Fire Protection Services</h3>
                 <p className="text-center mb-4 text-gray-700">Inspection, installation, testing, and maintenance of fire prevention systems</p>
                 <Link
-                  href="/services"
+                  href="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-gray-900 transition"
                 >
-                  Learn More
+                  Request Quote
                 </Link>
               </div>
        

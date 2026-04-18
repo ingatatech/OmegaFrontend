@@ -74,7 +74,7 @@ const services = [
       "Renovations & extensions",
       "Project management & consultancy",
     ],
-    cta: "Request Construction Quote",
+    cta: "Request Quote",
   },
   {
     id: "maintenance",
@@ -88,7 +88,7 @@ const services = [
       "HVAC system servicing",
       "Facility inspections and repairs",
     ],
-    cta: "Book Maintenance Service",
+    cta: "Request Quote",
   },
   {
     id: "cleaning",
@@ -102,7 +102,7 @@ const services = [
       "Post-construction cleanup",
       "Janitorial services",
     ],
-    cta: "Schedule Cleaning",
+    cta: "Request Quote",
   },
   {
     id: "interior",
@@ -115,7 +115,7 @@ const services = [
       "Furniture and décor selection",
       "Turnkey interior solutions",
     ],
-    cta: "Start Interior Project",
+    cta: "Request Quote",
   },
   {
     id: "workshop",
@@ -128,7 +128,7 @@ const services = [
       "Signage and branding elements",
       "Bespoke installations for interiors and exteriors",
     ],
-    cta: "Request Workshop Quote",
+    cta: "Request Quote",
   },
   {
     id: "fire-protection",
@@ -141,7 +141,7 @@ const services = [
       "Fire Protection System Design",
       "Comprehensive Annual Maintenance Contract (AMC)",
     ],
-    cta: "Request Fire Protection Quote",
+    cta: "Request Quote",
   },
 ];
 
@@ -316,6 +316,18 @@ export default function ServicesPage() {
                           <span>{item}</span>
                         </div>
                       ))}
+                    </div>
+                    <div className="mt-auto pt-4">
+                      <a
+                        href="/contact"
+                        className={`inline-block py-2 px-4 rounded-lg font-semibold transition-colors duration-500 w-full text-center ${
+                          isHovered
+                            ? "bg-white text-primary hover:bg-gray-100"
+                            : "bg-primary text-white hover:bg-primary/90"
+                        }`}
+                      >
+                        {service.cta || "Request Quote"}
+                      </a>
                     </div>
                   </div>
                 </div>
