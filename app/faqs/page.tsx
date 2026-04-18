@@ -248,7 +248,7 @@ export default function EnhancedFAQPage() {
              
 
                 <motion.h1
-                  className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-2xl"
+                  className="text-4xl font-bold mb-6 text-white drop-shadow-2xl"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
@@ -260,7 +260,7 @@ export default function EnhancedFAQPage() {
                 </motion.h1>
 
                 <motion.p
-                  className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-lg leading-relaxed"
+                  className="text-xl text-white/90 mb-8 drop-shadow-lg leading-relaxed"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
@@ -310,16 +310,16 @@ export default function EnhancedFAQPage() {
 
 
           {/* FAQ Section */}
-          <section id="faqs" className="py-5 bg-white">
+          <section id="faqs" className="py-9 bg-white">
             <div className="container mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-16"
+                className="text-left mb-16"
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Find Your Answers</h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <h2 className="text-4xl font-bold text-gray-800 mb-4 max-w-4xl mx-auto">Find Your Answers</h2>
+                <p className="text-xl text-gray-600 max-w-4xl mx-auto">
                   Search through our comprehensive FAQ database or browse by category to find the information you need
                 </p>
               </motion.div>
@@ -460,16 +460,17 @@ export default function EnhancedFAQPage() {
                 )}
               </div>
             </div>
-          </section>
-
-    
-
-          {/* Bottom wave */}
+              {/* Bottom wave */}
           <div className="absolute left-0 right-0 bottom-0 z-20 pointer-events-none -mb-3">
             <svg viewBox="0 0 1920 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-10 md:h-14">
               <path d="M0,40 Q480,80 960,40 T1920,40 V80 H0 Z" fill="#1760b0" />
             </svg>
           </div>
+          </section>
+
+    
+
+        
         </div>
 ):error ?(
   <div className="min-h-screen bg-gradient-to-br from-primary/90 via-primary/60 to-white/95 flex items-center justify-center">

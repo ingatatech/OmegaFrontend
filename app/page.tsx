@@ -153,7 +153,7 @@ const yearsExperience = currentYear - 2015;
               transition={{ delay: 0.3, duration: 0.8 }}
               className=" mb-8 text-2xl font-medium text-blue-100 text-left"
             >
-              Your trusted partner for Construction, Building Maintenance, Interior Design, Production Workshop,
+              Your trusted partner for Construction, Building Maintenance, Interior Design, Production Workshop, Fire Protection Services
               & Cleaning services
             </motion.p>
 

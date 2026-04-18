@@ -348,7 +348,7 @@ export default function InteractiveContactPage() {
             <option>Building Maintenance</option>
             <option>Interior Design</option>
             <option>Production Workshop</option>
-          
+            <option>Fire Protection Services</option>
           </select>
         </div>
         <div>
