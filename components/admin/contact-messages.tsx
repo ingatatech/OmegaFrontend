@@ -5,7 +5,7 @@ import AdminLayout from "./layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Mail, Eye, X, Search, CheckCircle, XCircle, Building, Calendar, MessageSquare } from "lucide-react"
+import { Mail, Eye, X, Search, CheckCircle, XCircle, Building, Calendar, MessageSquare, User, Phone, Briefcase, Clock } from "lucide-react"
 import api from "@/lib/axios"
 import toast from "react-hot-toast"
 import { motion, AnimatePresence } from "framer-motion"
@@ -57,7 +57,7 @@ export default function AdminContactMessages() {
   async function handleToggleResponded(id: string, responded: boolean) {
     setUpdating(id)
     try {
-      await api.patch(`/contact-messages/${id}`, { responded: !responded })
+      await api.patch(`/contact-messages/${id}/responded`, { responded: !responded })
       setMessages((msgs) => msgs.map((msg) => (msg.id === id ? { ...msg, responded: !responded } : msg)))
       toast.success(`Message marked as ${!responded ? "responded" : "not responded"}`)
     } catch (err: any) {
@@ -338,83 +338,153 @@ export default function AdminContactMessages() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+            onClick={() => setShowModal(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl my-8 overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                  <MessageSquare className="w-6 h-6 text-primary" />
-                  Contact Message Details
-                </h2>
-                <Button variant="outline" size="sm" onClick={() => setShowModal(false)} className="border-gray-200">
-                  <X className="w-4 h-4" />
-                </Button>
+              {/* Header */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 px-6 sm:px-8 py-6 relative">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                    <MessageSquare className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{selectedMessage.subject}</h2>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Badge className={`${getStatusColor(selectedMessage.responded)} border-0 shadow-sm`}>
+                        {selectedMessage.responded ? (
+                          <><CheckCircle className="w-3 h-3 mr-1" /> Responded</>
+                        ) : (
+                          <><Clock className="w-3 h-3 mr-1" /> Pending</>
+                        )}
+                      </Badge>
+                      <Badge className={`${getServiceColor(selectedMessage.serviceInterest)} border-0 shadow-sm`}>
+                        <Briefcase className="w-3 h-3 mr-1" />
+                        {selectedMessage.serviceInterest}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                    <p className="text-gray-900 font-semibold">{selectedMessage.name}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <p className="text-gray-900">{selectedMessage.email}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Company</label>
-                    <p className="text-gray-900">{selectedMessage.company}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                    <p className="text-gray-900">{selectedMessage.phone || "Not provided"}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Service Interest</label>
-                    <Badge className={`${getServiceColor(selectedMessage.serviceInterest)} border`}>
-                      {selectedMessage.serviceInterest}
-                    </Badge>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                    <Badge className={`${getStatusColor(selectedMessage.responded)} border`}>
-                      {selectedMessage.responded ? "Responded" : "Pending"}
-                    </Badge>
+              {/* Content */}
+              <div className="px-6 sm:px-8 py-6 max-h-[calc(90vh-200px)] overflow-y-auto">
+                {/* Contact Information Card */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-5 sm:p-6 mb-6 border border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    Contact Information
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-blue-50 rounded-lg">
+                        <User className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Full Name</p>
+                        <p className="text-sm font-semibold text-gray-900 truncate">{selectedMessage.name}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-purple-50 rounded-lg">
+                        <Mail className="w-5 h-5 text-purple-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Email Address</p>
+                        <a href={`mailto:${selectedMessage.email}`} className="text-sm font-medium text-purple-600 hover:text-purple-700 truncate block">
+                          {selectedMessage.email}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-green-50 rounded-lg">
+                        <Phone className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Phone Number</p>
+                        <p className="text-sm font-medium text-gray-900">{selectedMessage.phone || "Not provided"}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-orange-50 rounded-lg">
+                        <Building className="w-5 h-5 text-orange-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Company</p>
+                        <p className="text-sm font-semibold text-gray-900 truncate">{selectedMessage.company}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                  <p className="text-gray-900 font-semibold">{selectedMessage.subject}</p>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <p className="text-gray-900 whitespace-pre-line">{selectedMessage.message}</p>
+                {/* Message Content Card */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 shadow-sm mb-6">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4" />
+                    Message Content
+                  </h3>
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100/30 rounded-xl p-5 border border-gray-100">
+                    <p className="text-gray-800 leading-relaxed whitespace-pre-line">{selectedMessage.message}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-500">
-                    Received on {new Date(selectedMessage.createdAt).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })} at{" "}
-                    {new Date(selectedMessage.createdAt).toLocaleTimeString()}
-                  </p>
+                {/* Timestamp Card */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50/50 rounded-2xl p-4 border border-blue-100">
+                  <div className="flex items-center gap-3 text-sm">
+                    <div className="p-2 bg-white rounded-lg shadow-sm">
+                      <Calendar className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-600 mb-0.5">Received on</p>
+                      <p className="font-semibold text-gray-900">
+                        {new Date(selectedMessage.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}{" "}
+                        at {new Date(selectedMessage.createdAt).toLocaleTimeString("en-US", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer Actions */}
+              <div className="bg-gray-50 px-6 sm:px-8 py-5 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-3 justify-end">
                   <Button
-                    onClick={() => handleToggleResponded(selectedMessage.id, selectedMessage.responded)}
+                    variant="outline"
+                    onClick={() => setShowModal(false)}
+                    className="border-gray-300 hover:bg-gray-100 order-2 sm:order-1"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      handleToggleResponded(selectedMessage.id, selectedMessage.responded)
+                      setSelectedMessage({ ...selectedMessage, responded: !selectedMessage.responded })
+                    }}
                     disabled={updating === selectedMessage.id}
                     className={`${
-                      selectedMessage.responded ? "bg-red-600 hover:bg-red-700" : "bg-green-600 hover:bg-green-700"
-                    } text-white`}
+                      selectedMessage.responded
+                        ? "bg-red-600 hover:bg-red-700"
+                        : "bg-green-600 hover:bg-green-700"
+                    } text-white shadow-lg order-1 sm:order-2`}
                   >
                     {updating === selectedMessage.id ? (
                       <div className="w-4 h-4 animate-spin rounded-full border-2 border-white border-t-transparent mr-2" />

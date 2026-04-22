@@ -5,7 +5,7 @@ import AdminLayout from "./layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { XCircle, Edit, Trash, X, Search, Eye } from "lucide-react"
+import { XCircle, Edit, Trash, X, Search, Eye, User as UserIcon, Briefcase, Calendar, MessageSquare, CheckCircle, Clock } from "lucide-react"
 import { fetchTestimonials, deleteTestimonial } from "@/lib/api"
 import toast from "react-hot-toast"
 import { motion, AnimatePresence } from "framer-motion"
@@ -359,52 +359,141 @@ export default function AdminTestimonials() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+            onClick={() => setShowViewModal(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl my-8 overflow-hidden"
             >
-              {/* Details */}
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Testimonial Details</h2>
-                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-              <div className="space-y-6 text-center">
-                <Image
-                  src={viewingTestimonial.leaderImage || "/placeholder.svg?height=150&width=150&query=person"}
-                  alt={viewingTestimonial.leaderName}
-                  width={150}
-                  height={150}
-                  className="w-32 h-32 object-cover rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold text-gray-900">{viewingTestimonial.leaderName}</h3>
-                <p className="text-gray-600">
-                  {viewingTestimonial.role} at {viewingTestimonial.companyName}
-                </p>
-                <p className="text-lg italic text-gray-800 mt-4">"{viewingTestimonial.quote}"</p>
-                <Badge
-                  className={`mt-4 text-sm ${
-                    viewingTestimonial.approved
-                      ? "bg-green-100 text-green-800 border-green-200"
-                      : "bg-red-100 text-red-800 border-red-200"
-                  }`}
+              {/* Header */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 px-6 sm:px-8 py-6 relative">
+                <button
+                  onClick={() => setShowViewModal(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white"
                 >
-                  {viewingTestimonial.approved ? "Approved" : "Pending Approval"}
-                </Badge>
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="text-center">
+                  <div className="inline-block p-3 bg-white/20 rounded-2xl backdrop-blur-sm mb-4">
+                    <MessageSquare className="w-8 h-8 text-white" />
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white">Testimonial Details</h2>
+                </div>
+              </div>
 
-                <p className="text-xs text-gray-400 mt-1">
-                  Sent At :{" "}
-                  {new Date(viewingTestimonial.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
+              {/* Content */}
+              <div className="px-6 sm:px-8 py-6 max-h-[calc(90vh-200px)] overflow-y-auto">
+                {/* Profile Section */}
+                <div className="text-center mb-6">
+                  <div className="relative inline-block mb-4">
+                    <Image
+                      src={viewingTestimonial.leaderImage || "/placeholder.svg?height=150&width=150&query=person"}
+                      alt={viewingTestimonial.leaderName}
+                      width={150}
+                      height={150}
+                      className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg"
+                    />
+                    <div className="absolute -bottom-2 -right-2">
+                      <Badge
+                        className={`${
+                          viewingTestimonial.approved
+                            ? "bg-green-500 text-white"
+                            : "bg-yellow-500 text-white"
+                        } border-0 shadow-lg px-3 py-1`}
+                      >
+                        {viewingTestimonial.approved ? (
+                          <><CheckCircle className="w-3 h-3 mr-1 inline" /> Approved</>
+                        ) : (
+                          <><Clock className="w-3 h-3 mr-1 inline" /> Pending</>
+                        )}
+                      </Badge>
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-1">{viewingTestimonial.leaderName}</h3>
+                  <p className="text-primary font-medium text-lg">{viewingTestimonial.role}</p>
+                  <p className="text-gray-600">{viewingTestimonial.companyName}</p>
+                </div>
+
+                {/* Quote Card */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-6 border border-gray-200 mb-6">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                      <MessageSquare className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Testimonial</h4>
+                      <p className="text-lg italic text-gray-800 leading-relaxed">"{viewingTestimonial.quote}"</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Project Info */}
+                <div className="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <Briefcase className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Related Project</p>
+                      <p className="text-sm font-semibold text-gray-900">
+                        {projects.find((p) => p.id === viewingTestimonial.project?.id)?.name || "Unknown Project"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Timestamp */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50/50 rounded-2xl p-4 border border-blue-100">
+                  <div className="flex items-center gap-3 text-sm">
+                    <div className="p-2 bg-white rounded-lg shadow-sm">
+                      <Calendar className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-600 mb-0.5">Submitted on</p>
+                      <p className="font-semibold text-gray-900">
+                        {new Date(viewingTestimonial.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="bg-gray-50 px-6 sm:px-8 py-5 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-3 justify-end">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowViewModal(false)}
+                    className="border-gray-300 hover:bg-gray-100"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      toggleApproval(viewingTestimonial)
+                      setShowViewModal(false)
+                    }}
+                    className={`${
+                      viewingTestimonial.approved
+                        ? "bg-yellow-600 hover:bg-yellow-700"
+                        : "bg-green-600 hover:bg-green-700"
+                    } text-white shadow-lg`}
+                  >
+                    {viewingTestimonial.approved ? (
+                      <><Clock className="w-4 h-4 mr-2" /> Mark as Pending</>
+                    ) : (
+                      <><CheckCircle className="w-4 h-4 mr-2" /> Approve Testimonial</>
+                    )}
+                  </Button>
+                </div>
               </div>
             </motion.div>
           </motion.div>

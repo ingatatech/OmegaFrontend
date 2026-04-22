@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import toast from "react-hot-toast"
-import { Search, Edit, Trash2, Plus, Star, Calendar, MapPin, Briefcase, DollarSign, X, Eye } from 'lucide-react'
+import { Search, Edit, Trash2, Plus, Star, Calendar, MapPin, Briefcase, DollarSign, X, Eye, Clock, Users, CheckCircle, Award } from 'lucide-react'
 import RichTextEditor from "@/components/ui/RichTextEditor"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -472,59 +472,114 @@ export default function AdminJobs() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setShowViewModal(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Job Details</h2>
-                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
-                  <X className="w-4 h-4" />
-                </Button>
+              {/* Header */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 px-6 sm:px-8 py-6 relative">
+                <button
+                  onClick={() => setShowViewModal(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                    <Briefcase className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <h2 className="text-2xl sm:text-3xl font-bold text-white">{viewingJob.title}</h2>
+                      {viewingJob.featured && (
+                        <Badge className="bg-yellow-400 text-yellow-900 border-0 shadow-sm">
+                          <Star className="w-3 h-3 mr-1" />
+                          Featured
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Badge className={`${getStatusColor(viewingJob.status)} border-0 shadow-sm`}>
+                        {viewingJob.status === "active" ? (
+                          <><CheckCircle className="w-3 h-3 mr-1" /> Active</>
+                        ) : (
+                          <><X className="w-3 h-3 mr-1" /> Closed</>
+                        )}
+                      </Badge>
+                      <Badge className={`${getTypeColor(viewingJob.type)} border-0 shadow-sm`}>
+                        {viewingJob.type}
+                      </Badge>
+                      {viewingJob.applicationsCount !== undefined && (
+                        <Badge className="bg-blue-500 text-white border-0 shadow-sm">
+                          <Users className="w-3 h-3 mr-1" />
+                          {viewingJob.applicationsCount} Applications
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <h1 className="text-3xl font-bold text-gray-900">{viewingJob.title}</h1>
-                  {viewingJob.featured && (
-                    <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
-                      <Star className="w-4 h-4 mr-1" />
-                      Featured
-                    </Badge>
-                  )}
+              {/* Content */}
+              <div className="px-6 sm:px-8 py-6 max-h-[calc(90vh-200px)] overflow-y-auto">
+                {/* Job Info Cards */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                        <Briefcase className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <p className="text-xs text-gray-600 font-medium">Department</p>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-900">{viewingJob.department}</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-4 border border-green-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                        <MapPin className="w-4 h-4 text-green-600" />
+                      </div>
+                      <p className="text-xs text-gray-600 font-medium">Location</p>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-900">{viewingJob.location}</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4 border border-purple-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                        <DollarSign className="w-4 h-4 text-purple-600" />
+                      </div>
+                      <p className="text-xs text-gray-600 font-medium">Salary</p>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-900">{viewingJob.salary}</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 rounded-xl p-4 border border-orange-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                        <Clock className="w-4 h-4 text-orange-600" />
+                      </div>
+                      <p className="text-xs text-gray-600 font-medium">Experience</p>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-900">{viewingJob.experience}</p>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-5 h-5 text-gray-400" />
-                    <div>
-                      <p className="text-xs text-gray-500">Department</p>
-                      <p className="text-sm font-medium">{viewingJob.department}</p>
+                {/* Deadline Alert */}
+                <div className="bg-gradient-to-br from-red-50 to-red-100/50 rounded-xl p-4 border border-red-200 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-white rounded-lg shadow-sm">
+                      <Calendar className="w-5 h-5 text-red-600" />
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-gray-400" />
                     <div>
-                      <p className="text-xs text-gray-500">Location</p>
-                      <p className="text-sm font-medium">{viewingJob.location}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <DollarSign className="w-5 h-5 text-gray-400" />
-                    <div>
-                      <p className="text-xs text-gray-500">Salary</p>
-                      <p className="text-sm font-medium">{viewingJob.salary}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-gray-400" />
-                    <div>
-                      <p className="text-xs text-gray-500">Deadline</p>
-                      <p className="text-sm font-medium">
+                      <p className="text-xs text-gray-600 mb-0.5">Application Deadline</p>
+                      <p className="text-sm font-bold text-gray-900">
                         {new Date(viewingJob.deadline).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -535,79 +590,124 @@ export default function AdminJobs() {
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <Badge className={`${getTypeColor(viewingJob.type)} border`}>{viewingJob.type}</Badge>
-                  <Badge className={`${getStatusColor(viewingJob.status)} border`}>{viewingJob.status}</Badge>
-                  {viewingJob.applicationsCount !== undefined && (
-                    <Badge className="bg-blue-100 text-blue-800 border-blue-200">
-                      {viewingJob.applicationsCount} Applications
-                    </Badge>
-                  )}
+                {/* Description */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 shadow-sm mb-6">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Job Description</h3>
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100/30 rounded-xl p-5 border border-gray-100">
+                    <div className="prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: viewingJob.description }} />
+                  </div>
                 </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Job Description</h3>
-                  <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: viewingJob.description }} />
-                </div>
-
+                {/* Responsibilities */}
                 {viewingJob.responsibilities.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Responsibilities</h3>
-                    <ul className="list-disc list-inside space-y-2">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-2xl p-5 sm:p-6 border border-blue-200 mb-6">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4" />
+                      Key Responsibilities
+                    </h3>
+                    <ul className="space-y-2">
                       {viewingJob.responsibilities.map((responsibility, index) => (
-                        <li key={index} className="text-gray-700">
-                          {responsibility}
+                        <li key={index} className="flex items-start gap-3">
+                          <div className="p-1 bg-blue-600 rounded-full mt-1 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                          </div>
+                          <span className="text-sm text-gray-800">{responsibility}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
 
+                {/* Qualifications */}
                 {viewingJob.qualifications.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Required Qualifications</h3>
-                    <ul className="list-disc list-inside space-y-2">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-2xl p-5 sm:p-6 border border-green-200 mb-6">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <Award className="w-4 h-4" />
+                      Required Qualifications
+                    </h3>
+                    <ul className="space-y-2">
                       {viewingJob.qualifications.map((qualification, index) => (
-                        <li key={index} className="text-gray-700">
-                          {qualification}
+                        <li key={index} className="flex items-start gap-3">
+                          <div className="p-1 bg-green-600 rounded-full mt-1 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                          </div>
+                          <span className="text-sm text-gray-800">{qualification}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
 
+                {/* Preferred Skills */}
                 {viewingJob.preferred && viewingJob.preferred.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Preferred Skills</h3>
-                    <ul className="list-disc list-inside space-y-2">
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl p-5 sm:p-6 border border-purple-200 mb-6">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <Star className="w-4 h-4" />
+                      Preferred Skills
+                    </h3>
+                    <ul className="space-y-2">
                       {viewingJob.preferred.map((skill, index) => (
-                        <li key={index} className="text-gray-700">
-                          {skill}
+                        <li key={index} className="flex items-start gap-3">
+                          <div className="p-1 bg-purple-600 rounded-full mt-1 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                          </div>
+                          <span className="text-sm text-gray-800">{skill}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
 
+                {/* Benefits */}
                 {viewingJob.benefits && viewingJob.benefits.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Benefits & Perks</h3>
-                    <ul className="list-disc list-inside space-y-2">
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100/50 rounded-2xl p-5 sm:p-6 border border-yellow-200 mb-6">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <Award className="w-4 h-4" />
+                      Benefits & Perks
+                    </h3>
+                    <ul className="space-y-2">
                       {viewingJob.benefits.map((benefit, index) => (
-                        <li key={index} className="text-gray-700">
-                          {benefit}
+                        <li key={index} className="flex items-start gap-3">
+                          <div className="p-1 bg-yellow-600 rounded-full mt-1 flex-shrink-0">
+                            <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                          </div>
+                          <span className="text-sm text-gray-800">{benefit}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
 
+                {/* Closure Reason */}
                 {viewingJob.closureReason && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <h3 className="text-lg font-semibold text-red-900 mb-2">Job Closure Reason</h3>
-                    <p className="text-red-700">{viewingJob.closureReason}</p>
+                  <div className="bg-gradient-to-br from-red-50 to-red-100/50 rounded-2xl p-5 border border-red-200">
+                    <h3 className="text-sm font-semibold text-red-900 uppercase tracking-wider mb-3">Job Closure Reason</h3>
+                    <p className="text-sm text-red-800">{viewingJob.closureReason}</p>
                   </div>
                 )}
+              </div>
+
+              {/* Footer */}
+              <div className="bg-gray-50 px-6 sm:px-8 py-5 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-3 justify-end">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowViewModal(false)}
+                    className="border-gray-300 hover:bg-gray-100"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setShowViewModal(false)
+                      handleEdit(viewingJob)
+                    }}
+                    className="bg-primary hover:bg-primary/90 text-white shadow-lg"
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit Job
+                  </Button>
+                </div>
               </div>
             </motion.div>
           </motion.div>

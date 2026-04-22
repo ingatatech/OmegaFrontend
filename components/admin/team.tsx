@@ -17,6 +17,8 @@ import {
   Calendar,
   Linkedin,
   Eye,
+  Briefcase,
+  Mail,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import api from "@/lib/axios"
@@ -380,47 +382,138 @@ export default function AdminTeam() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+            onClick={() => setShowViewModal(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-md"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Team Member Details</h2>
-                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-              <div className="space-y-4 text-center">
-                {viewingMember.image ? (
-                  <img src={viewingMember.image} alt={viewingMember.name} className="w-28 h-28 rounded-full object-cover mx-auto border-4 border-primary/20" />
-                ) : (
-                  <div className="w-28 h-28 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                    <User className="w-12 h-12 text-gray-400" />
+              {/* Header */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-6 relative">
+                <button
+                  onClick={() => setShowViewModal(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="text-center">
+                  <div className="inline-block p-3 bg-white/20 rounded-2xl backdrop-blur-sm mb-3">
+                    <User className="w-7 h-7 text-white" />
                   </div>
-                )}
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900">{viewingMember.name}</h3>
-                  <p className="text-primary font-medium">{viewingMember.position}</p>
+                  <h2 className="text-2xl font-bold text-white">Team Member</h2>
                 </div>
-                {viewingMember.linkedin && (
-                  <a
-                    href={viewingMember.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm"
+              </div>
+
+              {/* Content */}
+              <div className="px-6 py-6">
+                {/* Profile Image */}
+                <div className="text-center mb-6">
+                  {viewingMember.image ? (
+                    <img
+                      src={viewingMember.image}
+                      alt={viewingMember.name}
+                      className="w-32 h-32 rounded-full object-cover mx-auto border-4 border-primary/20 shadow-lg"
+                    />
+                  ) : (
+                    <div className="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto border-4 border-gray-200 shadow-lg">
+                      <User className="w-16 h-16 text-gray-400" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Member Info Cards */}
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-200">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white rounded-lg shadow-sm">
+                        <User className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-600 mb-1">Full Name</p>
+                        <p className="text-lg font-bold text-gray-900">{viewingMember.name}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4 border border-purple-200">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white rounded-lg shadow-sm">
+                        <Briefcase className="w-5 h-5 text-purple-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-600 mb-1">Position</p>
+                        <p className="text-sm font-semibold text-gray-900">{viewingMember.position}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {viewingMember.linkedin && (
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50/50 rounded-xl p-4 border border-blue-200">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-white rounded-lg shadow-sm">
+                          <Linkedin className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-600 mb-1">LinkedIn Profile</p>
+                          <a
+                            href={viewingMember.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                          >
+                            View Profile
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-4 border border-green-200">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white rounded-lg shadow-sm">
+                        <Calendar className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-600 mb-1">Joined Team</p>
+                        <p className="text-sm font-semibold text-gray-900">
+                          {new Date(viewingMember.createdAt).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="bg-gray-50 px-6 py-5 border-t border-gray-200">
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowViewModal(false)}
+                    className="flex-1 border-gray-300 hover:bg-gray-100"
                   >
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn Profile
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                )}
-                <p className="text-sm text-gray-500">
-                  Added: {new Date(viewingMember.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                </p>
+                    Close
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setShowViewModal(false)
+                      handleEdit(viewingMember)
+                    }}
+                    className="flex-1 bg-primary hover:bg-primary/90 text-white shadow-lg"
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit Member
+                  </Button>
+                </div>
               </div>
             </motion.div>
           </motion.div>

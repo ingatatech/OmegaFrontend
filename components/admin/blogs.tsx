@@ -5,7 +5,7 @@ import type React from "react"
 import AdminLayout from "./layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { FileText, Edit, Trash, X, Search, Plus, Eye } from "lucide-react"
+import { FileText, Edit, Trash, X, Search, Plus, Eye, Calendar, User as UserIcon } from "lucide-react"
 import api from "@/lib/axios"
 import toast from "react-hot-toast"
 import RichTextEditor from "@/components/ui/RichTextEditor"
@@ -454,33 +454,77 @@ export default function AdminBlogs() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+            onClick={() => setShowViewModal(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Blog Post Details</h2>
-                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-              <div className="space-y-6">
-                {viewingBlog.image && (
-                  <img src={viewingBlog.image} alt={viewingBlog.title} className="w-full h-64 object-cover rounded-xl" />
-                )}
-                <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">{viewingBlog.title}</h1>
-                  <p className="text-sm text-gray-500">
-                    Published: {new Date(viewingBlog.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                  </p>
+              {/* Header with Featured Image */}
+              {viewingBlog.image && (
+                <div className="relative h-64 sm:h-80 overflow-hidden">
+                  <img src={viewingBlog.image} alt={viewingBlog.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <button
+                    onClick={() => setShowViewModal(false)}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors text-white"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Content</h3>
-                  <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: viewingBlog.content }} />
+              )}
+
+              {/* Content */}
+              <div className="px-6 sm:px-8 py-6 max-h-[calc(90vh-300px)] overflow-y-auto">
+                {/* Title and Meta */}
+                <div className="mb-6">
+                  <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{viewingBlog.title}</h1>
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <div className="p-2 bg-blue-50 rounded-lg">
+                        <UserIcon className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <span className="font-medium">{viewingBlog.author.name}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="p-2 bg-green-50 rounded-lg">
+                        <Calendar className="w-4 h-4 text-green-600" />
+                      </div>
+                      <span>{new Date(viewingBlog.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Blog Content */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100/30 rounded-2xl p-6 border border-gray-200">
+                  <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: viewingBlog.content }} />
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="bg-gray-50 px-6 sm:px-8 py-5 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-3 justify-end">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowViewModal(false)}
+                    className="border-gray-300 hover:bg-gray-100"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setShowViewModal(false)
+                      handleEdit(viewingBlog)
+                    }}
+                    className="bg-primary hover:bg-primary/90 text-white shadow-lg"
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit Blog Post
+                  </Button>
                 </div>
               </div>
             </motion.div>

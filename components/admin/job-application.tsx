@@ -361,187 +361,206 @@ export default function AdminJobApplications() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setShowViewModal(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl my-8 overflow-hidden"
             >
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Application Details</h2>
-                <Button variant="outline" size="sm" onClick={() => setShowViewModal(false)} className="border-gray-200">
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              <div className="space-y-6">
-                {/* Applicant Information */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                      <User className="w-5 h-5 text-primary" />
-                      Applicant Information
-                    </h3>
-                    
-                    <div className="space-y-3">
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Full Name</label>
-                        <p className="text-gray-900">{viewingApplication.fullName}</p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Email</label>
-                        <p className="text-gray-900 flex items-center gap-2">
-                          {viewingApplication.email}
-                          <a href={`mailto:${viewingApplication.email}`} className="text-primary hover:text-primary/80">
-                            <Mail className="w-4 h-4" />
-                          </a>
-                        </p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Phone</label>
-                        <p className="text-gray-900 flex items-center gap-2">
-                          {viewingApplication.phone}
-                          <a href={`tel:${viewingApplication.phone}`} className="text-primary hover:text-primary/80">
-                            <Phone className="w-4 h-4" />
-                          </a>
-                        </p>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Applied On</label>
-                        <p className="text-gray-900">{new Date(viewingApplication.createdAt).toLocaleDateString()}</p>
-                      </div>
+              {/* Header */}
+              <div className="bg-gradient-to-r from-primary to-primary/80 px-6 sm:px-8 py-6 relative">
+                <button
+                  onClick={() => setShowViewModal(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                    <Briefcase className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{viewingApplication.job.title}</h2>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Badge className={`${getStatusColor(viewingApplication.status)} border-0 shadow-sm`}>
+                        {viewingApplication.status}
+                      </Badge>
+                      <span className="text-white/90 text-sm">{viewingApplication.job.department}</span>
                     </div>
                   </div>
+                </div>
+              </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                      <Briefcase className="w-5 h-5 text-primary" />
-                      Job Information
-                    </h3>
-                    
-                    <div className="space-y-3">
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Position</label>
-                        <p className="text-gray-900">{viewingApplication.job.title}</p>
+              {/* Content */}
+              <div className="px-6 sm:px-8 py-6 max-h-[calc(90vh-200px)] overflow-y-auto">
+                {/* Applicant Information Card */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-2xl p-5 sm:p-6 mb-6 border border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    Applicant Information
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-blue-50 rounded-lg">
+                        <User className="w-5 h-5 text-blue-600" />
                       </div>
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Department</label>
-                        <p className="text-gray-900">{viewingApplication.job.department}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Full Name</p>
+                        <p className="text-sm font-semibold text-gray-900">{viewingApplication.fullName}</p>
                       </div>
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Location</label>
-                        <p className="text-gray-900">{viewingApplication.job.location}</p>
+                    </div>
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-purple-50 rounded-lg">
+                        <Mail className="w-5 h-5 text-purple-600" />
                       </div>
-                      <div>
-                        <label className="text-sm font-medium text-gray-500">Type</label>
-                        <p className="text-gray-900">{viewingApplication.job.type}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Email</p>
+                        <a href={`mailto:${viewingApplication.email}`} className="text-sm font-medium text-purple-600 hover:text-purple-700 truncate block">
+                          {viewingApplication.email}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-green-50 rounded-lg">
+                        <Phone className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Phone</p>
+                        <a href={`tel:${viewingApplication.phone}`} className="text-sm font-medium text-green-600 hover:text-green-700">
+                          {viewingApplication.phone}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                      <div className="p-2 bg-orange-50 rounded-lg">
+                        <Calendar className="w-5 h-5 text-orange-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500 mb-1">Applied On</p>
+                        <p className="text-sm font-semibold text-gray-900">{new Date(viewingApplication.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Documents */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-primary" />
-                    Documents
+                {/* Job Details Card */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 shadow-sm mb-6">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <Briefcase className="w-4 h-4" />
+                    Job Details
                   </h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Location</p>
+                      <p className="text-sm font-medium text-gray-900">{viewingApplication.job.location}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Employment Type</p>
+                      <p className="text-sm font-medium text-gray-900">{viewingApplication.job.type}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Documents Card */}
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 shadow-sm mb-6">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <FileText className="w-4 h-4" />
+                    Submitted Documents
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-200">
+                      <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <div className="p-2 bg-white rounded-lg shadow-sm">
                             <FileText className="w-5 h-5 text-blue-600" />
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">Resume/CV</p>
-                            <p className="text-sm text-gray-500">PDF Document</p>
+                            <p className="font-semibold text-gray-900 text-sm">Resume/CV</p>
+                            <p className="text-xs text-gray-600">PDF Document</p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          <Button 
-                            size="sm" 
-                            variant="outline"
-                            onClick={() => {
-                              handleViewPDF(viewingApplication.resume, `${viewingApplication.fullName} - Resume`);
-                              setShowViewModal(false);
-                            }}
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                  
-                        </div>
                       </div>
+                      <Button 
+                        size="sm" 
+                        onClick={() => {
+                          handleViewPDF(viewingApplication.resume, `${viewingApplication.fullName} - Resume`);
+                          setShowViewModal(false);
+                        }}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        View Resume
+                      </Button>
                     </div>
 
                     {viewingApplication.coverLetter && (
-                      <div className="border border-gray-200 rounded-lg p-4">
-                        <div className="flex items-center justify-between">
+                      <div className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-4 border border-green-200">
+                        <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <div className="p-2 bg-white rounded-lg shadow-sm">
                               <FileText className="w-5 h-5 text-green-600" />
                             </div>
                             <div>
-                              <p className="font-medium text-gray-900">Cover Letter</p>
-                              <p className="text-sm text-gray-500">PDF Document</p>
+                              <p className="font-semibold text-gray-900 text-sm">Cover Letter</p>
+                              <p className="text-xs text-gray-600">PDF Document</p>
                             </div>
                           </div>
-                          <div className="flex gap-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              onClick={() => {
-                                handleViewPDF(viewingApplication.coverLetter!, `${viewingApplication.fullName} - Cover Letter`)
-                                setShowViewModal(false)
-                              }}
-                            >
-                              <Eye className="w-4 h-4" />
-                            </Button>
-                          
-                          </div>
                         </div>
+                        <Button 
+                          size="sm" 
+                          onClick={() => {
+                            handleViewPDF(viewingApplication.coverLetter!, `${viewingApplication.fullName} - Cover Letter`)
+                            setShowViewModal(false)
+                          }}
+                          className="w-full bg-green-600 hover:bg-green-700 text-white"
+                        >
+                          <Eye className="w-4 h-4 mr-2" />
+                          View Cover Letter
+                        </Button>
                       </div>
                     )}
                   </div>
                 </div>
+              </div>
 
-                {/* Status and Actions */}
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Application Status</h3>
-                  
-                  <div className="flex items-center gap-4">
-                    <Badge className={`${getStatusColor(viewingApplication.status)} border text-sm px-3 py-1`}>
-                      {viewingApplication.status}
-                    </Badge>
-                    
-                    {viewingApplication.status === "pending" && (
-                      <div className="flex gap-2">
-                        <Button
-                          onClick={() => {
-                            handleStatusChange(viewingApplication.id, "successful")
-                            setShowViewModal(false)
-                          }}
-                          className="bg-green-600 hover:bg-green-700 text-white"
-                        >
-                          <Check className="w-4 h-4 mr-2" />
-                          Approve
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            handleStatusChange(viewingApplication.id, "rejected")
-                            setShowViewModal(false)
-                          }}
-                          className="bg-red-600 hover:bg-red-700 text-white"
-                        >
-                          <X className="w-4 h-4 mr-2" />
-                          Reject
-                        </Button>
-                      </div>
-                    )}
-                  </div>
+              {/* Footer Actions */}
+              <div className="bg-gray-50 px-6 sm:px-8 py-5 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row gap-3 justify-end">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowViewModal(false)}
+                    className="border-gray-300 hover:bg-gray-100 order-3 sm:order-1"
+                  >
+                    Close
+                  </Button>
+                  {viewingApplication.status === "pending" && (
+                    <>
+                      <Button
+                        onClick={() => {
+                          handleStatusChange(viewingApplication.id, "rejected")
+                          setShowViewModal(false)
+                        }}
+                        className="bg-red-600 hover:bg-red-700 text-white shadow-lg order-2"
+                      >
+                        <X className="w-4 h-4 mr-2" />
+                        Reject Application
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          handleStatusChange(viewingApplication.id, "successful")
+                          setShowViewModal(false)
+                        }}
+                        className="bg-green-600 hover:bg-green-700 text-white shadow-lg order-1 sm:order-3"
+                      >
+                        <Check className="w-4 h-4 mr-2" />
+                        Approve Application
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>
