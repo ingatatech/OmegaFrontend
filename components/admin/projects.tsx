@@ -232,7 +232,7 @@ export default function AdminProjects() {
   }
 
   const handleGenerateTestimonialLink = (projectId: string) => {
-    const link = `${window.location.origin}/submit-testimonial/${projectId}`
+    const link = `${window.location.origin}/submit-testimonial/project?id=${projectId}`
     navigator.clipboard.writeText(link)
     toast.success("Testimonial link copied to clipboard!")
   }

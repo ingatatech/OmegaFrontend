@@ -258,13 +258,7 @@ export default function AdminTestimonials() {
                       <td className="px-3 py-1 text-sm text-gray-900">{(page - 1) * pageSize + index + 1}</td>
                       <td className="px-3 py-1 truncate">
                         <div className="flex items-center gap-3">
-                          <Image
-                            src={testimonial.leaderImage || "/placeholder.svg?height=40&width=40&query=person"}
-                            alt={testimonial.leaderName}
-                            width={40}
-                            height={40}
-                            className="w-10 h-10 object-cover rounded-full"
-                          />
+                        
                           <div>
                             <h3 className="text-sm font-semibold text-gray-900">{testimonial.leaderName}</h3>
                            
@@ -396,7 +390,25 @@ export default function AdminTestimonials() {
                       width={150}
                       height={150}
                       className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent) {
+                          const fallback = document.createElement('div');
+                          fallback.className = 'w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full border-4 border-white shadow-lg flex items-center justify-center';
+                          const icon = document.createElement('div');
+                          icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
+                          fallback.appendChild(icon);
+                          parent.appendChild(fallback);
+                        }
+                      }}
                     />
+                    {!viewingTestimonial.leaderImage && (
+                      <div className="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full border-4 border-white shadow-lg flex items-center justify-center absolute inset-0">
+                        <UserIcon className="w-16 h-16 text-gray-400" />
+                      </div>
+                    )}
                     <div className="absolute -bottom-2 -right-2">
                       <Badge
                         className={`${

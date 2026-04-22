@@ -18,7 +18,6 @@ import {
   Linkedin,
   Eye,
   Briefcase,
-  Mail,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import api from "@/lib/axios"
