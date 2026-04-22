@@ -5,7 +5,7 @@ import AdminLayout from "./layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Mail, Eye, X, Search, CheckCircle, XCircle, Building, Calendar, MessageSquare, User, Phone, Briefcase, Clock } from "lucide-react"
+import { Mail, Eye, X, Search, CheckCircle, XCircle, Building, Calendar, MessageSquare, User, Phone, Briefcase, Clock, Send } from "lucide-react"
 import api from "@/lib/axios"
 import toast from "react-hot-toast"
 import { motion, AnimatePresence } from "framer-motion"
@@ -70,6 +70,11 @@ export default function AdminContactMessages() {
   function handleViewMessage(message: ContactMessage) {
     setSelectedMessage(message)
     setShowModal(true)
+  }
+
+  const handleReplyEmail = (email: string, subject: string, name: string) => {
+    const mailtoLink = `mailto:${email}?subject=Re: ${encodeURIComponent(subject)}&body=${encodeURIComponent(`Dear ${name},\n\nThank you for contacting us regarding "${subject}".\n\n`)}`
+    window.location.href = mailtoLink
   }
 
   const filteredMessages = messages.filter((message) => {
@@ -470,9 +475,16 @@ export default function AdminContactMessages() {
                   <Button
                     variant="outline"
                     onClick={() => setShowModal(false)}
-                    className="border-gray-300 hover:bg-gray-100 order-2 sm:order-1"
+                    className="border-gray-300 hover:bg-gray-100 order-3 sm:order-1"
                   >
                     Close
+                  </Button>
+                  <Button
+                    onClick={() => handleReplyEmail(selectedMessage.email, selectedMessage.subject, selectedMessage.name)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg order-2"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Reply via Email
                   </Button>
                   <Button
                     onClick={() => {
@@ -484,7 +496,7 @@ export default function AdminContactMessages() {
                       selectedMessage.responded
                         ? "bg-red-600 hover:bg-red-700"
                         : "bg-green-600 hover:bg-green-700"
-                    } text-white shadow-lg order-1 sm:order-2`}
+                    } text-white shadow-lg order-1 sm:order-3`}
                   >
                     {updating === selectedMessage.id ? (
                       <div className="w-4 h-4 animate-spin rounded-full border-2 border-white border-t-transparent mr-2" />
